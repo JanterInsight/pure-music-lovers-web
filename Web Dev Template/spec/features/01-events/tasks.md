@@ -2,14 +2,15 @@
 
 ## Tareas
 
-### 1. Crear estructura HTML de eventos
-- [ ] Agregar sección `<section id="eventos">` en `code/index.html`
-- [ ] Crear contenedor para contadores de eventos
-- [ ] Crear template HTML para cada contador (título, tiempo, estado, lugar)
-- [ ] Agregar enlace al título de la sección en el menú de navegación
+### 1. Crear componente Events
+- [ ] Crear componente `Events.jsx` en `code/client/src/components/Events/`
+- [ ] Crear componente `EventCard.jsx` para cada contador
+- [ ] Crear archivo `Events.module.css` con estilos
+- [ ] Implementar estado con useState para eventos y tiempo actual
+- [ ] Implementar useEffect con setInterval para actualizar contadores
 
 ### 2. Implementar estilos CSS para eventos
-- [ ] Agregar estilos de la sección de eventos en `code/css/main.css`
+- [ ] Crear estilos del componente Events en `Events.module.css`
 - [ ] Implementar grid layout para contadores (1/2/3 columnas según breakpoint)
 - [ ] Crear estilos de card para cada contador
 - [ ] Implementar colores de estado (amarillo, verde, rojo)
@@ -18,14 +19,12 @@
 - [ ] Hacer el lugar clickeable con estilo de enlace
 - [ ] Asegurar responsividad en todos los breakpoints
 
-### 3. Crear lógica JavaScript de contadores
-- [ ] Crear archivo `code/js/events.js`
+### 3. Implementar lógica de contadores
 - [ ] Definir array de eventos con datos de ejemplo
 - [ ] Crear función para calcular tiempo restante (dd:hh:mm:ss)
 - [ ] Implementar función de formateo de tiempo
 - [ ] Crear función para determinar estado del evento (espera/curso/finalizado)
-- [ ] Implementar `setInterval` para actualizar contadores cada 1 segundo
-- [ ] Crear función para renderizar contadores en el DOM
+- [ ] Implementar useEffect con setInterval para actualizar contadores cada 1 segundo
 - [ ] Implementar lógica de visibilidad (mostrar/ocultar sección)
 
 ### 4. Implementar sistema de estados

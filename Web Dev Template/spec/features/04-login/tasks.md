@@ -11,15 +11,19 @@ Esta feature está definida pero no se implementará hasta que sea explícitamen
 ### Cuando se autorice la implementación:
 
 1. Definir especificaciones completas del sistema de autenticación
-2. Elegir stack tecnológico (backend + frontend)
-3. Diseñar arquitectura de autenticación
-4. Implementar sistema de registro
-5. Implementar sistema de login
-6. Implementar recuperación de contraseña
-7. Diseñar e implementar perfil de usuario
-8. Implementar seguridad (hashing, HTTPS, validaciones)
-9. Testing y debugging
-10. Documentación
+2. Diseñar arquitectura de autenticación con React + Node.js
+3. Implementar backend API con Express:
+   - Rutas de registro y login
+   - Middleware de autenticación JWT
+   - Validaciones y seguridad
+4. Implementar frontend con React:
+   - Componentes de formulario de login/registro
+   - Context API para gestión de estado de autenticación
+   - React Router para rutas protegidas
+5. Implementar recuperación de contraseña
+6. Diseñar e implementar perfil de usuario
+7. Testing y debugging
+8. Documentación
 
 ## Notas
 

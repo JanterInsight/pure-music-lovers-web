@@ -9,14 +9,14 @@
 - [ ] Decidir si se incluye sistema de calificación (estrellas)
 - [ ] Definir si las reseñas estarán relacionadas con eventos específicos
 
-### 2. Crear estructura HTML de reseñas
-- [ ] Agregar sección `<section id="reseñas">` en `code/index.html`
-- [ ] Crear contenedor para grid de reseñas
-- [ ] Crear template HTML para cada card de reseña
-- [ ] Agregar enlace a la sección en el menú de navegación
+### 2. Crear componente Reviews
+- [ ] Crear componente `Reviews.jsx` en `code/client/src/components/Reviews/`
+- [ ] Crear componente `ReviewCard.jsx` para cada reseña
+- [ ] Crear archivo `Reviews.module.css` con estilos
+- [ ] Implementar array de reseñas de ejemplo en el componente
 
 ### 3. Implementar estilos CSS para reseñas
-- [ ] Agregar estilos de la sección de reseñas en `code/css/main.css`
+- [ ] Crear estilos del componente Reviews en `Reviews.module.css`
 - [ ] Implementar grid layout responsive (1/2/3 columnas según breakpoint)
 - [ ] Crear estilos de card para reseñas
 - [ ] Estilizar autor, contenido, fecha y calificación
@@ -25,8 +25,7 @@
 - [ ] Asegurar responsividad en todos los breakpoints
 
 ### 4. Agregar contenido de reseñas
-- [ ] Crear array de reseñas de ejemplo en JavaScript (si se usa)
-- [ ] O agregar reseñas directamente en HTML
+- [ ] Incluir array de reseñas de ejemplo en el componente Reviews
 - [ ] Incluir información variada (diferentes eventos, autores, fechas)
 - [ ] Asegurar que el contenido sea realista y auténtico
 

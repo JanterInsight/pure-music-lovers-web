@@ -58,3 +58,6 @@ Las features se implementarán en el siguiente orden, basado en la dependencia l
 - Cada feature debe tener su `spec.md`, `plan.md` y `tasks.md` antes de implementarse
 - No implementar la feature 04-login hasta que se autorice explícitamente
 - Las imágenes de la galería se encuentran en `/gallery`
+- El proyecto usa **React + Vite** para el frontend
+- El proyecto usa **Node.js + Express** para el backend (API REST)
+- La estructura del código está en `code/client/` (frontend) y `code/server/` (backend)

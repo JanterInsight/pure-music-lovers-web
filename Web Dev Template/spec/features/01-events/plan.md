@@ -3,18 +3,20 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Componente JavaScript vanilla con HTML/CSS
-- **Enfoque**: Módulo independiente que se integra en la página principal
+- **Tipo**: Componente React funcional con hooks
+- **Enfoque**: Componente independiente `Events.jsx` con estado local
 - **Responsividad**: Mobile-first, grid/flexbox para layout de contadores
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Se agrega sección #eventos
-├── css/
-│   └── main.css        # Estilos para eventos y contadores
-└── js/
-    └── events.js       # Lógica de contadores regresivos
+code/client/src/
+├── components/
+│   └── Events/
+│       ├── Events.jsx
+│       ├── Events.module.css
+│       └── EventCard.jsx
+├── App.jsx
+└── main.jsx
 ```
 
 ### Decisiones Técnicas
@@ -40,10 +42,11 @@ code/
 - **Transiciones**: `transition: all 0.3s ease` para cambios de color
 - **Tipografía**: Monospace para los números del contador (mejor legibilidad)
 
-#### 3. Lógica JavaScript
+#### 3. Lógica React (Hooks)
 - **Formato de fechas**: Usar ISO 8601 para consistencia
-- **Cálculo de tiempo**: Función que calcula diferencia entre fecha actual y fecha objetivo
-- **Actualización**: `setInterval` cada 1 segundo
+- **Estado**: useState para eventos y tiempo actual
+- **Efecto**: useEffect con setInterval cada 1 segundo
+- **Cálculo**: Función que calcula diferencia entre fecha actual y fecha objetivo
 - **Estados**: Determinar estado basado en:
   - Si `ahora < inicio` → En espera
   - Si `inicio <= ahora < fin` → En curso
@@ -96,6 +99,8 @@ const events = [
 ## Dependencias
 
 - 00-main (debe estar implementado primero)
+- React 18+
+- React Router DOM (para navegación)
 
 ## Riesgos y Mitigaciones
 

@@ -38,9 +38,24 @@ Este sitio web permite:
 ├── docs/                # Documentation directory
 │   └── CHANGELOG.md     # Detailed changelog
 ├── code/                # Código fuente del proyecto
-│   ├── index.html
-│   └── src/
-│       └── components/
+│   ├── client/          # Frontend React + Vite
+│   │   ├── public/
+│   │   ├── src/
+│   │   │   ├── components/     # Componentes React
+│   │   │   ├── pages/          # Páginas (si aplica)
+│   │   │   ├── App.jsx
+│   │   │   ├── App.css
+│   │   │   └── main.jsx
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   └── vite.config.js
+│   └── server/          # Backend Node.js + Express
+│       ├── src/
+│       │   ├── routes/        # Rutas de la API
+│       │   ├── controllers/   # Controladores
+│       │   └── index.js       # Servidor principal
+│       ├── package.json
+│       └── .env
 ├── gallery/             # Imágenes de eventos
 └── spec/                # Especificaciones del proyecto
     ├── README.md
@@ -59,16 +74,29 @@ Este sitio web permite:
 
 ## 🛠️ Tecnologías y Estándares
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Estilos y animaciones
-- **JavaScript**: Interactividad y funcionalidad
+### Frontend
+- **React 18+**: Biblioteca para interfaces de usuario
+- **Vite**: Bundler y herramienta de desarrollo
+- **React Router**: Enrutamiento para SPA
+- **CSS Modules**: Estilos componentizados
+- **JavaScript (ES6+)**: Lenguaje de programación
+
+### Backend
+- **Node.js**: Runtime de JavaScript
+- **Express**: Framework web para API REST
+- **CORS**: Manejo de cross-origin requests
+
+### Herramientas
 - **Git**: Control de versiones
+- **npm**: Gestión de dependencias
 - **Documentación**: Markdown-based siguiendo Keep a Changelog
 - **Desarrollo Dirigido por Especificación**: Flujo de trabajo basado en spec/
 
 ## 📋 Prerrequisitos
 
-- Git (para control de versiones)
+- **Node.js** (v16 o superior) - [Descargar](https://nodejs.org/)
+- **npm** (viene con Node.js)
+- **Git** (para control de versiones)
 - Navegador web moderno (Chrome, Firefox, Edge, Safari)
 - Editor de código (VS Code recomendado)
 
@@ -101,7 +129,34 @@ El proyecto sigue un flujo de **Spec-Driven Development**:
 1. Leer la especificación en `spec/features/NNN-nombre/spec.md`
 2. Revisar el plan técnico en `spec/features/NNN-nombre/plan.md`
 3. Seguir las tareas en `spec/features/NNN-nombre/tasks.md`
-4. Implementar el código en `code/`
+4. Implementar el código en `code/client/` (frontend) o `code/server/` (backend)
+
+#### Frontend (React + Vite)
+
+```bash
+# Instalar dependencias
+cd code/client
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Build para producción
+npm run build
+```
+
+#### Backend (Node.js + Express)
+
+```bash
+# Instalar dependencias
+cd code/server
+npm install
+
+# Iniciar servidor
+npm run dev
+
+# El servidor correrá en http://localhost:3001
+```
 
 ## 📝 Configuración
 

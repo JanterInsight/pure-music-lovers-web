@@ -3,16 +3,19 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Componente HTML/CSS estático
-- **Enfoque**: Footer simple y limpio, sin JavaScript requerido
+- **Tipo**: Componente React funcional
+- **Enfoque**: Componente `Footer.jsx` con enlaces de navegación
 - **Responsividad**: Mobile-first, múltiples columnas en desktop
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Se agrega <footer>
-└── css/
-    └── main.css        # Estilos para footer
+code/client/src/
+├── components/
+│   └── Footer/
+│       ├── Footer.jsx
+│       └── Footer.module.css
+├── App.jsx
+└── main.jsx
 ```
 
 ### Decisiones Técnicas
@@ -43,13 +46,13 @@ code/
 - **Espaciado**: Padding generoso, gap entre secciones
 
 #### 3. Enlaces
-- **Internos**: Enlaces ancla a secciones del sitio
-  - `#sobre-nosotros`
-  - `#eventos`
-  - `#galeria`
-  - `#reseñas`
-  - `#contactanos`
-- **Comportamiento**: Scroll suave a la sección correspondiente
+- **Internos**: Enlaces React Router a rutas del sitio
+  - `/` o `/#sobre-nosotros`
+  - `/#eventos`
+  - `/#galeria`
+  - `/#reseñas`
+  - `/#contactanos`
+- **Comportamiento**: Navegación SPA con React Router
 
 #### 4. Responsividad
 - **Desktop** (> 1024px): 3-4 columnas lado a lado
@@ -88,6 +91,8 @@ code/
 
 - 00-main (debe estar implementado primero)
 - Todas las secciones deben estar implementadas para los enlaces
+- React 18+
+- React Router DOM (para navegación)
 
 ## Riesgos y Mitigaciones
 

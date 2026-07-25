@@ -2,17 +2,17 @@
 
 ## Tareas
 
-### 1. Crear estructura HTML del footer
-- [ ] Agregar elemento `<footer>` en `code/index.html` al final del body
-- [ ] Crear contenedor `.footer-container`
+### 1. Crear componente Footer
+- [ ] Crear componente `Footer.jsx` en `code/client/src/components/Footer/`
+- [ ] Crear archivo `Footer.module.css` con estilos
 - [ ] Crear sección `.footer-brand` con nombre y tagline
 - [ ] Crear sección `.footer-description` con descripción
 - [ ] Crear sección `.footer-links` con enlaces rápidos
 - [ ] Crear sección `.footer-copyright` con copyright y créditos
-- [ ] Agregar enlaces a todas las secciones del sitio
+- [ ] Agregar enlaces React Router a todas las secciones del sitio
 
 ### 2. Implementar estilos CSS para footer
-- [ ] Agregar estilos del footer en `code/css/main.css`
+- [ ] Crear estilos del componente Footer en `Footer.module.css`
 - [ ] Implementar layout con CSS Grid o Flexbox
 - [ ] Configurar columnas (3-4 en desktop, 2 en tablet, 1 en mobile)
 - [ ] Estilizar fondo oscuro y texto claro
@@ -23,11 +23,11 @@
 - [ ] Asegurar responsividad en todos los breakpoints
 
 ### 3. Implementar enlaces de navegación
-- [ ] Agregar enlace a "Sobre Nosotros" (#sobre-nosotros)
-- [ ] Agregar enlace a "Eventos" (#eventos)
-- [ ] Agregar enlace a "Galería" (#galeria)
-- [ ] Agregar enlace a "Reseñas" (#reseñas)
-- [ ] Agregar enlace a "Contáctanos" (#contactanos)
+- [ ] Agregar enlace a "Sobre Nosotros" (React Router)
+- [ ] Agregar enlace a "Eventos" (React Router)
+- [ ] Agregar enlace a "Galería" (React Router)
+- [ ] Agregar enlace a "Reseñas" (React Router)
+- [ ] Agregar enlace a "Contáctanos" (React Router)
 - [ ] Verificar que todos los enlaces funcionen correctamente
 
 ### 4. Responsividad y testing

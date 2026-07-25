@@ -3,18 +3,20 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Componente JavaScript vanilla con HTML/CSS
-- **Enfoque**: Lightbox/gallery viewer independiente
+- **Tipo**: Componente React funcional con hooks
+- **Enfoque**: Componente `Gallery.jsx` con lightbox integrado
 - **Responsividad**: Mobile-first con grid adaptativo
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Se agrega sección #galeria
-├── css/
-│   └── main.css        # Estilos para galería y lightbox
-└── js/
-    └── gallery.js      # Lógica de galería y lightbox
+code/client/src/
+├── components/
+│   └── Gallery/
+│       ├── Gallery.jsx
+│       ├── Gallery.module.css
+│       └── Lightbox.jsx
+├── App.jsx
+└── main.jsx
 ```
 
 ### Decisiones Técnicas
@@ -48,7 +50,9 @@ code/
   - Transiciones: `opacity` y `visibility`
   - Imagen centrada con `max-width: 90vw` y `max-height: 90vh`
 
-#### 3. Lógica JavaScript
+#### 3. Lógica React (Hooks)
+- **Estado**: useState para imágenes, índice actual, lightbox abierto/cerrado
+- **Efecto**: useEffect para event listeners (teclado)
 - **Detección de imágenes**: 
   - Escanear directorio `gallery/` (si es posible)
   - O mantener array hardcodeado de imágenes
@@ -56,19 +60,18 @@ code/
   - Usar `loading="lazy"` en HTML
   - O implementar Intersection Observer para lazy loading avanzado
 - **Apertura de lightbox**:
-  - Event listener en cada `.gallery-item`
-  - Pasar índice de imagen al abrir
-  - Mostrar lightbox con animación
+  - Función `openLightbox(index)`
+  - Actualizar estado `currentIndex` y `isLightboxOpen`
+  - Mostrar lightbox con animación CSS
 - **Navegación**:
-  - Variables para `currentIndex`
   - Funciones `showNext()` y `showPrev()`
-  - Actualizar `src` de imagen en lightbox
+  - Actualizar `currentIndex` en estado
   - Manejar límites (primera/última imagen)
 - **Cierre**:
   - Click en botón X
   - Click en overlay (fuera de imagen)
   - Tecla ESC
-  - Ocultar lightbox con animación
+  - Actualizar estado `isLightboxOpen = false`
 
 #### 4. Eventos de Teclado
 - **ESC**: Cerrar lightbox
@@ -117,6 +120,8 @@ const galleryImages = [
 ## Dependencias
 
 - 00-main (debe estar implementado primero)
+- React 18+
+- React Router DOM (para navegación)
 
 ## Riesgos y Mitigaciones
 

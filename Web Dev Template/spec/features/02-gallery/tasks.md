@@ -2,14 +2,15 @@
 
 ## Tareas
 
-### 1. Crear estructura HTML de galería
-- [ ] Agregar sección `<section id="galeria">` en `code/index.html`
-- [ ] Crear contenedor `.gallery-grid` para las imágenes
-- [ ] Crear estructura del modal/lightbox (overlay, imagen, botones, flechas)
-- [ ] Agregar enlace a la sección en el menú de navegación
+### 1. Crear componente Gallery
+- [ ] Crear componente `Gallery.jsx` en `code/client/src/components/Gallery/`
+- [ ] Crear componente `Lightbox.jsx` para el modal
+- [ ] Crear archivo `Gallery.module.css` con estilos
+- [ ] Implementar estado con useState para imágenes, índice y lightbox
+- [ ] Implementar useEffect para event listeners de teclado
 
 ### 2. Implementar estilos CSS para galería
-- [ ] Agregar estilos de la sección de galería en `code/css/main.css`
+- [ ] Crear estilos del componente Gallery en `Gallery.module.css`
 - [ ] Implementar grid layout responsive (1/2/3/4 columnas según breakpoint)
 - [ ] Crear estilos de `.gallery-item` con hover effect
 - [ ] Implementar estilos del lightbox/modal
@@ -18,8 +19,7 @@
 - [ ] Agregar transiciones suaves para apertura/cierre de lightbox
 - [ ] Asegurar responsividad en todos los breakpoints
 
-### 3. Crear lógica JavaScript de galería
-- [ ] Crear archivo `code/js/gallery.js`
+### 3. Implementar lógica de galería
 - [ ] Definir array de imágenes (hardcodeado o dinámico)
 - [ ] Crear función para cargar imágenes en el grid
 - [ ] Implementar evento de click en imágenes para abrir lightbox
@@ -29,17 +29,17 @@
 - [ ] Manejar límites del array (primera/última imagen)
 
 ### 4. Implementar eventos de teclado
-- [ ] Agregar event listener para tecla ESC (cerrar lightbox)
+- [ ] Agregar event listener para tecla ESC (cerrar lightbox) con useEffect
 - [ ] Agregar event listener para flecha izquierda (imagen anterior)
 - [ ] Agregar event listener para flecha derecha (imagen siguiente)
 - [ ] Prevenir comportamiento por defecto cuando lightbox está abierto
-- [ ] Remover event listeners cuando lightbox se cierra
+- [ ] Limpiar event listeners en cleanup de useEffect
 
 ### 5. Implementar cierre de lightbox
-- [ ] Click en botón X cierra lightbox
+- [ ] Click en botón X cierra lightbox (actualizar estado)
 - [ ] Click en overlay (fuera de imagen) cierra lightbox
 - [ ] Tecla ESC cierra lightbox
-- [ ] Animación suave de cierre
+- [ ] Animación suave de cierre con CSS transitions
 
 ### 6. Responsividad y testing
 - [ ] Probar grid mobile (1-2 columnas)

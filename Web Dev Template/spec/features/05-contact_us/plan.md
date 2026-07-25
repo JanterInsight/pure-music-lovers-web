@@ -3,18 +3,20 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Componente JavaScript vanilla con HTML/CSS
-- **Enfoque**: Formulario que utiliza mailto para enviar por Gmail
+- **Tipo**: Componente React funcional con hooks
+- **Enfoque**: Componente `Contact.jsx` con formulario y validación
 - **Responsividad**: Mobile-first, layout de 2 columnas en desktop
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Se agrega sección #contactanos
-├── css/
-│   └── main.css        # Estilos para contacto y formulario
-└── js/
-    └── contact.js      # Validación y lógica del formulario
+code/client/src/
+├── components/
+│   └── Contact/
+│       ├── Contact.jsx
+│       ├── Contact.module.css
+│       └── ContactForm.jsx
+├── App.jsx
+└── main.jsx
 ```
 
 ### Decisiones Técnicas
@@ -46,7 +48,8 @@ code/
   - Validación visual (bordes rojos en errores)
 - **Responsivo**: Ajustar padding y tamaños en mobile
 
-#### 3. Lógica JavaScript
+#### 3. Lógica React (Hooks)
+- **Estado**: useState para campos del formulario y errores
 - **Validación**:
   - Nombre: requerido, mínimo 2 caracteres
   - Email: requerido, formato válido
@@ -109,6 +112,8 @@ const contactInfo = {
 ## Dependencias
 
 - 00-main (debe estar implementado primero)
+- React 18+
+- React Router DOM (para navegación)
 
 ## Riesgos y Mitigaciones
 

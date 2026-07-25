@@ -2,15 +2,14 @@
 
 ## Tareas
 
-### 1. Crear estructura HTML de contacto
-- [ ] Agregar sección `<section id="contactanos">` en `code/index.html`
-- [ ] Crear layout de 2 columnas (información + formulario)
-- [ ] Crear sección de información de contacto con iconos
-- [ ] Crear formulario con campos: nombre, email, asunto, mensaje
-- [ ] Agregar enlace a la sección en el menú de navegación
+### 1. Crear componente Contact
+- [ ] Crear componente `Contact.jsx` en `code/client/src/components/Contact/`
+- [ ] Crear componente `ContactForm.jsx` para el formulario
+- [ ] Crear archivo `Contact.module.css` con estilos
+- [ ] Implementar estado con useState para campos y errores
 
 ### 2. Implementar estilos CSS para contacto
-- [ ] Agregar estilos de la sección de contacto en `code/css/main.css`
+- [ ] Crear estilos del componente Contact en `Contact.module.css`
 - [ ] Implementar layout de 2 columnas en desktop, 1 en mobile
 - [ ] Estilizar información de contacto con iconos
 - [ ] Estilizar formulario (inputs, botón, labels)
@@ -18,9 +17,8 @@
 - [ ] Estilizar enlaces de WhatsApp
 - [ ] Asegurar responsividad en todos los breakpoints
 
-### 3. Crear lógica JavaScript
-- [ ] Crear archivo `code/js/contact.js`
-- [ ] Implementar validación de campos:
+### 3. Implementar lógica del formulario
+- [ ] Implementar validación de campos con useState:
   - Nombre: requerido, mínimo 2 caracteres
   - Email: requerido, formato válido
   - Asunto: requerido, mínimo 5 caracteres

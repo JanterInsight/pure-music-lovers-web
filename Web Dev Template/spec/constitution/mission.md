@@ -45,11 +45,22 @@ El sitio web incluirá las siguientes secciones:
 
 ## Stack Tecnológico
 
-- HTML5 semántico
-- CSS3 con animaciones y transiciones
-- JavaScript vanilla para interactividad
-- Git para control de versiones
-- Desarrollo dirigido por especificaciones (spec/)
+### Frontend
+- **React 18+**: Biblioteca para interfaces de usuario
+- **Vite**: Bundler y herramienta de desarrollo
+- **React Router**: Enrutamiento para SPA
+- **CSS Modules**: Estilos componentizados
+- **JavaScript (ES6+)**: Lenguaje de programación
+
+### Backend
+- **Node.js**: Runtime de JavaScript
+- **Express**: Framework web para API REST
+- **CORS**: Manejo de cross-origin requests
+
+### Herramientas
+- **Git**: Control de versiones
+- **npm**: Gestión de dependencias
+- **Desarrollo dirigido por especificaciones (spec/)**
 
 ## Notas
 

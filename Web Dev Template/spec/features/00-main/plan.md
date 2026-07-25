@@ -3,18 +3,31 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Página web estática (HTML/CSS/JS vanilla)
-- **Enfoque**: Single Page Application (SPA) con scroll suave entre secciones
+- **Tipo**: Single Page Application (SPA) con React
+- **Enfoque**: Componentes funcionales con hooks (useState, useEffect)
+- **Enrutamiento**: React Router para navegación entre secciones
 - **Responsividad**: Mobile-first con breakpoints para tablet y desktop
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Estructura HTML principal
-├── css/
-│   └── main.css        # Estilos globales
-└── js/
-    └── main.js         # Funcionalidad JavaScript
+code/client/
+├── src/
+│   ├── components/
+│   │   ├── Navbar/
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Navbar.module.css
+│   │   ├── Hero/
+│   │   │   ├── Hero.jsx
+│   │   │   └── Hero.module.css
+│   │   └── About/
+│   │       ├── About.jsx
+│   │       └── About.module.css
+│   ├── App.jsx
+│   ├── App.css
+│   └── main.jsx
+├── index.html
+├── package.json
+└── vite.config.js
 ```
 
 ### Decisiones Técnicas
@@ -82,7 +95,9 @@ code/
 
 ## Dependencias
 
-- Ninguna (HTML/CSS/JS vanilla)
+- React 18+
+- React Router DOM
+- Vite
 
 ## Riesgos y Mitigaciones
 

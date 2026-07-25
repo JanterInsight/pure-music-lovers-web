@@ -3,18 +3,20 @@
 ## Enfoque Técnico
 
 ### Arquitectura
-- **Tipo**: Componente JavaScript vanilla con HTML/CSS
-- **Enfoque**: Sección estática con contenido hardcodeado (por ahora)
+- **Tipo**: Componente React funcional con hooks
+- **Enfoque**: Componente `Reviews.jsx` con datos hardcodeados (por ahora)
 - **Responsividad**: Mobile-first con grid adaptativo
 
 ### Estructura de Archivos
 ```
-code/
-├── index.html          # Se agrega sección #reseñas
-├── css/
-│   └── main.css        # Estilos para reseñas
-└── js/
-    └── reviews.js      # Lógica de reseñas (si es necesario)
+code/client/src/
+├── components/
+│   └── Reviews/
+│       ├── Reviews.jsx
+│       ├── Reviews.module.css
+│       └── ReviewCard.jsx
+├── App.jsx
+└── main.jsx
 ```
 
 ### Decisiones Técnicas
@@ -46,8 +48,8 @@ code/
 
 #### 3. Contenido
 - **Inicial**: 3-6 reseñas de ejemplo
-- **Hardcodeado**: Contenido estático en HTML o array JavaScript
-- **Dinámico**: Preparar estructura para futuro backend (opcional)
+- **Hardcodeado**: Array de objetos en JavaScript dentro del componente
+- **Dinámico**: Preparar estructura para futuro backend con API (opcional)
 
 #### 4. Responsividad
 - **Mobile**: 1 reseña por fila
@@ -91,6 +93,8 @@ O en HTML:
 ## Dependencias
 
 - 00-main (debe estar implementado primero)
+- React 18+
+- React Router DOM (para navegación)
 
 ## Riesgos y Mitigaciones
 

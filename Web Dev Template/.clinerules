@@ -52,6 +52,8 @@ Skills principales organizadas por categoría:
 ## Estructura del Proyecto
 - `.agents/`: Configuración del agente (proyecto.yaml, skills, scripts)
 - `code/`: Código fuente del proyecto
+  - `client/`: Frontend React + Vite
+  - `server/`: Backend Node.js + Express
 - `docs/`: Documentos principales del proyecto (CHANGELOG.md)
 - `spec/`: Especificaciones del proyecto (constitution, features)
 - `gallery/`: Imágenes de eventos
