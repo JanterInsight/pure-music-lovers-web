@@ -1,0 +1,286 @@
+# ================================
+# Project Template - .gitignore
+# ================================
+
+# -------------------------------
+# OS Generated Files
+# -------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.msi
+*.exe
+*.app
+*.bat
+*.cmd
+*.com
+*.pif
+*.scr
+*.hta
+*.cpl
+*.msc
+*.msp
+*.mst
+*.pog
+*.prg
+*.tmp
+*.temp
+*.chk
+*.log
+*.log.*
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.DocumentRevisions-V100
+.fseventsd
+.hotfiles.btree
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# -------------------------------
+# IDE & Editor Files
+# -------------------------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+__pycache__/
+.artifact
+.out/
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-z]
+.sw[a-p]
+.s[a-rt-v]
+.s[a-w][a-ns]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+
+# -------------------------------
+# Version Control
+# -------------------------------
+*.orig
+*.rej
+*.bak
+*.patch
+*.diff
+vssver.scc
+vssver2.scc
+
+# -------------------------------
+# Dependencies
+# -------------------------------
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.tox/
+.nox/
+
+# Java
+*.jar
+*.war
+*.ear
+*.class
+*.ctxt
+.mvn/
+mvnw
+mvnw.cmd
+repository/
+target/
+*.gradle
+!gradle/wrapper/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# C/C++
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.i*86
+*.x86_64
+*.hex
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# C#
+*.csproj
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.nuget.props
+*.nuget.targets
+bin/
+obj/
+*.cache
+*.ilk
+*.meta
+*.pch
+*.sig
+*.snupkg
+packages/
+
+# PHP
+/vendor/
+composer.lock
+
+# Ruby
+*.gem
+*.rbc
+/.bundle
+/vendor/bundle
+!.bundle/config
+*.bundle
+Gemfile.lock
+
+# Go
+/bin/
+/obj/
+/*.exe
+/go.sum
+/go.mod
+
+# Rust
+/target/
+Cargo.lock
+Cargo.toml
+
+# -------------------------------
+# Build & Compiled Files
+# -------------------------------
+/dist/
+/build/
+/out/
+*.bin
+*.dll
+*.so
+*.dylib
+
+# -------------------------------
+# Logs & Temporary Files
+# -------------------------------
+*.tmp
+.tmp/
+.temp/
+
+# -------------------------------
+# Environment & Config
+# -------------------------------
+.env
+.env.*
+!.env.example
+.env.local
+.env.development
+.env.production
+.env.test
+.config/
+.local/
+
+# -------------------------------
+# Testing
+# -------------------------------
+/coverage/
+.nyc_output/
+.hypothesis/
+
+# -------------------------------
+# Documentation Build
+# -------------------------------
+/docs/_build/
+/site/
+
+# -------------------------------
+# Agent Configuration (Do not modify)
+# -------------------------------
+.agents/
+
+# -------------------------------
+# Markdown Files
+# -------------------------------
+# Ignore markdown files in root by default
+/*.md
+
+# But keep these essential files in root
+!README.md
+!CHANGELOG.md
+!LICENSE.md
+!CONTRIBUTING.md
+
+# Keep all markdown files in these directories
+!spec/**/*.md
+!docs/**/*.md
+!code/**/*.md

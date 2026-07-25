@@ -1,0 +1,64 @@
+# Puros Melómanos - Clinerules
+# Este archivo define las reglas y comportamientos del asistente para este proyecto.
+
+## Identificación del Proyecto
+- **Nombre**: pure-music-lovers-web
+- **Versión**: 1.0
+- **Idioma preferido**: Español
+
+## Instrucciones Globales
+1. Mantener el código limpio y bien estructurado siguiendo buenas prácticas.
+2. Usar rutas relativas al directorio raíz del proyecto.
+3. Documentar los cambios realizados.
+4. No eliminar archivos existentes sin permiso.
+5. Todos los cambios realizados por el agente deben ser comiteados inmediatamente.
+6. Escribir siempre los mensajes de commit en inglés.
+7. Siempre mantener actualizado docs/CHANGELOG.md
+8. Siempre mantener actualizado el README.md
+
+## Regla de Auto-commit
+- **SIEMPRE** después de modificar archivos del proyecto, ejecutar:
+  ```bash
+  python .agents\skills\auto-commit\scripts/commit_agent.py
+  ```
+- Esto automatiza los commits git con mensajes descriptivos.
+
+## Skills Disponibles
+Las skills están definidas en `.agents/project.yaml` en la sección `skill_usage_guide`.
+Consultar esa guía para determinar qué skill aplicar en cada situación.
+
+Skills principales organizadas por categoría:
+- **Always to use**: auto-commit
+- **Skills Management**: skill-creator, using-agent-skills
+- **Web Dev**: browser-testing-with-devtools, frontend-design, frontend-ui-engineering, playground
+- **Review/Performance**: review-team, performance-optimization, code-simplification, code-review-and-quality
+- **Testing**: debugging-and-error-recovery
+- **Others**: context-engineering, documentation-and-adrs, incremental-implementation, planning-and-task-breakdown,  spec-driven-development
+
+## Convenciones de Git
+- Mensajes de commit siempre en inglés.
+- Hacer commit después de cada cambio significativo.
+- No hacer commit de archivos sensibles (.env, credenciales, etc.).
+
+## Reglas de Código
+- Mantener código limpio y bien estructurado.
+- Usar rutas relativas al directorio raíz del proyecto.
+- Documentar cambios realizados.
+- No eliminar archivos existentes sin permiso explícito.
+
+## Archivos de Contexto
+- `README.md`: Documentación principal del proyecto.
+
+## Estructura del Proyecto
+- `.agents/`: Configuración del agente (proyecto.yaml, skills, scripts)
+- `code/`: Código fuente del proyecto
+- `docs/`: Documentos principales del proyecto (CHANGELOG.md)
+- `spec/`: Especificaciones del proyecto (constitution, features)
+- `gallery/`: Imágenes de eventos
+- `.gitignore`: Archivos ignorados por git
+- `.clinerules`: Este archivo - reglas del asistente
+
+## Notas
+- Para más detalles sobre skills, consultar `.agents/project.yaml`.
+- El directorio `.agents/` contiene la configuración local del agente.
+- No implementar features de spec/ hasta que el usuario lo autorice explícitamente.
