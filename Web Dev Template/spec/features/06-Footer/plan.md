@@ -35,14 +35,15 @@ code/client/src/
   - Tablet: 2 columnas
   - Mobile: 1 columna
 - **Colores**:
-  - Fondo: Color oscuro (#1a1a2e o similar)
-  - Texto: Blanco o gris claro
-  - Enlaces: Color de acento con hover effect
+  - Fondo: #0A0A0A (negro)
+  - Texto: #FFFFFF (blanco) y #F5F0E8 (beige claro)
+  - Enlaces: #FFD700 (dorado) con hover en #B8860B (dorado oscuro)
 - **Tipografía**:
-  - Nombre: Grande y prominente
-  - Descripción: Legible, tamaño normal
-  - Enlaces: Mediano, con hover effect
-  - Copyright: Pequeño
+  - Fuente principal: Libre Baskerville
+  - Nombre: Grande y prominente, color #FFD700 (dorado)
+  - Descripción: Legible, tamaño normal, color #F5F0E8 (beige claro)
+  - Enlaces: Mediano, color #FFFFFF (blanco), hover #B8860B (dorado oscuro)
+  - Copyright: Pequeño, color #F5F0E8 (beige claro)
 - **Espaciado**: Padding generoso, gap entre secciones
 
 #### 3. Enlaces
@@ -86,6 +87,19 @@ code/client/src/
 │  Hecho por Janlier, Alejandro y Andrés   │
 └─────────────────────────────────────────┘
 ```
+
+## Diseño
+
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
+
+### Tipografía
+- **Fuente principal**: Libre Baskerville
 
 ## Dependencias
 

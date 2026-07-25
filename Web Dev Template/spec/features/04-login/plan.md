@@ -24,6 +24,19 @@ Cuando se autorice la implementación, se utilizará:
 ### Base de Datos (Opcional)
 - MongoDB, PostgreSQL o similar para almacenar usuarios
 
+## Diseño
+
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
+
+### Tipografía
+- **Fuente principal**: Libre Baskerville
+
 ## Notas
 
 - Las especificaciones técnicas se definirán en el futuro

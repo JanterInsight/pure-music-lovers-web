@@ -40,7 +40,9 @@ code/client/src/
   - En curso: `#27ae60` (verde)
   - Finalizado: `#e74c3c` (rojo)
 - **Transiciones**: `transition: all 0.3s ease` para cambios de color
-- **Tipografía**: Monospace para los números del contador (mejor legibilidad)
+- **Tipografía**: 
+  - Fuente principal: Libre Baskerville
+  - Monospace para los números del contador (mejor legibilidad)
 
 #### 3. Lógica React (Hooks)
 - **Formato de fechas**: Usar ISO 8601 para consistencia
@@ -95,6 +97,19 @@ const events = [
   }
 ];
 ```
+
+## Diseño
+
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
+
+### Tipografía
+- **Fuente principal**: Libre Baskerville
 
 ## Dependencias
 

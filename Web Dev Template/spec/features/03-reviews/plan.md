@@ -36,14 +36,16 @@ code/client/src/
   - Tablet: 2 columnas
   - Desktop: 3 columnas
 - **Cards**: 
-  - Fondo blanco o claro
+  - Fondo: #1A1A1A (gris oscuro)
   - Sombra sutil
   - Border radius
   - Padding interno
+  - Border: 1px solid #B8860B (dorado oscuro)
 - **Tipografía**:
-  - Autor: Negrita, tamaño mediano
-  - Contenido: Legible, tamaño normal
-  - Fecha: Pequeña, color gris
+  - Fuente principal: Libre Baskerville
+  - Autor: Negrita, tamaño mediano, color #FFD700 (dorado)
+  - Contenido: Legible, tamaño normal, color #FFFFFF (blanco)
+  - Fecha: Pequeña, color #F5F0E8 (beige claro)
 - **Calificación**: Estrellas doradas (si se implementa)
 
 #### 3. Contenido
@@ -89,6 +91,19 @@ O en HTML:
   <div class="review-rating">⭐⭐⭐⭐⭐</div>
 </div>
 ```
+
+## Diseño
+
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
+
+### Tipografía
+- **Fuente principal**: Libre Baskerville
 
 ## Dependencias
 

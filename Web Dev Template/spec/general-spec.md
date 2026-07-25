@@ -9,6 +9,3 @@
 
 ### Tipografía:
 - Libre Baskerville
-
-### Plataforma:
-Adaptado a todos los dispositivos aplicando siempre Responsive Resize

@@ -49,6 +49,7 @@ code/client/src/
   - Overlay: `background: rgba(0,0,0,0.9)`
   - Transiciones: `opacity` y `visibility`
   - Imagen centrada con `max-width: 90vw` y `max-height: 90vh`
+- **Tipografía**: Libre Baskerville
 
 #### 3. Lógica React (Hooks)
 - **Estado**: useState para imágenes, índice actual, lightbox abierto/cerrado
@@ -116,6 +117,19 @@ const galleryImages = [
   // ...
 ];
 ```
+
+## Diseño
+
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
+
+### Tipografía
+- **Fuente principal**: Libre Baskerville
 
 ## Dependencias
 

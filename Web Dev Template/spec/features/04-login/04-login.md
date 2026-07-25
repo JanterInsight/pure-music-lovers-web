@@ -1,1 +1,0 @@
-No Implementar esta función por ahora

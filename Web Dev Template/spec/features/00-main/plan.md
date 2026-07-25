@@ -56,15 +56,16 @@ code/client/
 - **Tipografía**: Texto justificado o alineado a la izquierda
 - **Énfasis**: Negrita para "Puros Melómanos" y el mensaje final
 
-### Paleta de Colores (Propuesta)
-- **Primario**: #1a1a2e (azul oscuro)
-- **Secundario**: #e94560 (rojo/rosa vibrante)
-- **Acento**: #f39c12 (amarillo/dorado)
-- **Texto**: #ffffff (blanco) y #333333 (gris oscuro)
-- **Fondo**: #16213e (azul marino)
+### Paleta de Colores (Oficial)
+- **Títulos**: #FFD700 (dorado)
+- **Bordes, Detalles y hover**: #B8860B (dorado oscuro)
+- **Fondo Principal**: #0A0A0A (negro)
+- **Tarjetas y secciones secundarias**: #1A1A1A (gris oscuro)
+- **Textos Principales**: #FFFFFF (blanco)
+- **Textos Secundarios**: #F5F0E8 (beige claro)
 
 ### Tipografía
-- **Fuente principal**: System fonts o Google Fonts (ej: Poppins, Montserrat, Open Sans)
+- **Fuente principal**: Libre Baskerville
 - **Tamaños**:
   - Hero title: 3rem - 5rem (responsive)
   - Subtítulos: 2rem - 3rem
