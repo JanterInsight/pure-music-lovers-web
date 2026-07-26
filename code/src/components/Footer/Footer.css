@@ -90,6 +90,18 @@
   opacity: 0.8;
 }
 
+.footer-link {
+  color: var(--color-title);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.footer-link:hover {
+  color: var(--color-border);
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 3rem 1rem 1.5rem;
