@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Contact.module.css'
+import './Contact.css'
 
 const contactInfo = {
   email: "puremusiclovers@gmail.com",

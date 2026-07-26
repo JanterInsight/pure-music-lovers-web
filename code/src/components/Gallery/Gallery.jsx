@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Gallery.module.css'
+import './Gallery.css'
 
 const galleryImages = [
   { src: '/gallery/pure-music-lovers-front.jpg', alt: 'Evento Puros Melómanos - Foto 1' },

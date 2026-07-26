@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Events.module.css'
+import './Events.css'
 
 const eventsData = [
   {
