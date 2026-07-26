@@ -1,15 +1,9 @@
-<div align="center">
-  <h1>🎵 Puros Melómanos</h1>
-  <p><strong>Tu comunidad de amantes de la música</strong></p>
-  <p>
-    <a href="https://janterinsight.github.io/pure-music-lovers-web/" target="_blank">
-      <img src="https://img.shields.io/badge/🌐-Live%20Demo-FFD700?style=for-the-badge" alt="Live Demo">
-    </a>
-    <a href="https://github.com/JanterInsight/pure-music-lovers-web">
-      <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
-    </a>
-  </p>
-</div>
+# 🎵 Puros Melómanos
+
+**Tu comunidad de amantes de la música**
+
+[![Live Demo](https://img.shields.io/badge/🌐-Live%20Demo-FFD700?style=for-the-badge)](https://janterinsight.github.io/pure-music-lovers-web/)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/JanterInsight/pure-music-lovers-web)
 
 Sitio web oficial de **Puros Melómanos** - Tu comunidad de amantes de la música.
 
@@ -18,6 +12,7 @@ Sitio web oficial de **Puros Melómanos** - Tu comunidad de amantes de la músic
 **Puros Melómanos** es una comunidad apasionada dedicada a reunir a amantes de la música de todos los géneros y edades. Nuestra misión es crear experiencias musicales inolvidables a través de eventos cuidadosamente organizados, donde la pasión por la música es el lenguaje universal que nos une.
 
 Este sitio web permite:
+
 - Descubrir eventos musicales increíbles
 - Conectar con otros amantes de la música
 - Vivir experiencias únicas en cada concierto
@@ -36,7 +31,7 @@ Este sitio web permite:
 
 ## 📁 Estructura del Proyecto
 
-```
+```text
 .
 ├── .clinerules          # AI assistant configuration and rules
 ├── .gitignore           # Git ignore rules for multiple platforms/languages
@@ -62,23 +57,18 @@ Este sitio web permite:
     │   ├── mission.md
     │   └── roadmap.md
     └── features/
-        ├── 00-main/
-        ├── 01-events/
-        ├── 02-gallery/
-        ├── 03-reviews/
-        ├── 04-login/
-        ├── 05-contact_us/
-        └── 06-Footer/
 ```
 
 ## 🛠️ Tecnologías y Estándares
 
 ### Frontend
+
 - **React 18+**: Biblioteca para interfaces de usuario
 - **Vite**: Bundler y herramienta de desarrollo
 - **JavaScript (ES6+)**: Lenguaje de programación
 
 ### Herramientas
+
 - **Git**: Control de versiones
 - **npm**: Gestión de dependencias
 - **Documentación**: Markdown-based siguiendo Keep a Changelog
@@ -140,12 +130,15 @@ npm run build
 ## 📝 Configuración
 
 ### `.clinerules`
+
 Define reglas y comportamientos para desarrollo asistido por IA.
 
 ### `.gitignore`
+
 Reglas de ignorado para Git cubriendo múltiples plataformas y lenguajes.
 
 ### `.editorconfig`
+
 Mantiene estilos de codificación consistentes across diferentes editores.
 
 ## 🤝 Contribuir
@@ -167,11 +160,12 @@ Este proyecto está configurado para desplegarse automáticamente en **GitHub Pa
 
 1. Cada vez que se hace push a la rama `master`, el workflow de GitHub Actions se ejecuta automáticamente.
 2. El workflow instala las dependencias, construye el proyecto y despliega el contenido en GitHub Pages.
-3. El sitio estará disponible en: [https://janterinsight.github.io/pure-music-lovers-web/](https://janterinsight.github.io/pure-music-lovers-web/)
+3. El sitio estará disponible en: <https://janterinsight.github.io/pure-music-lovers-web/>
 
 ### Despliegue manual
 
 También puedes hacer un despliegue manual desde la pestaña **Actions** del repositorio en GitHub:
+
 1. Ve a la pestaña "Actions"
 2. Selecciona "Deploy to GitHub Pages"
 3. Haz clic en "Run workflow"
@@ -196,6 +190,7 @@ Este proyecto está licenciado bajo la MIT License - ver el archivo [LICENSE](LI
 ## 🔄 Versionado
 
 Este proyecto sigue [Semantic Versioning](https://semver.org/):
+
 - **MAJOR** versión para cambios incompatibles en la API
 - **MINOR** versión para nueva funcionalidad (compatible con versiones anteriores)
 - **PATCH** versión para correcciones de bugs (compatible con versiones anteriores)
