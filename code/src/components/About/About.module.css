@@ -1,0 +1,44 @@
+.about {
+  background-color: var(--color-bg-primary);
+  padding: 5rem 1.5rem;
+}
+
+.about-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-title);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-content p {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.about-final-message {
+  text-align: center !important;
+  font-size: 1.25rem !important;
+  color: var(--color-title) !important;
+  font-weight: 600 !important;
+  margin-top: 2rem !important;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 3rem 1rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
