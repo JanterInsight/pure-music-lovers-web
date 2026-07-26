@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react'
 import './Gallery.css'
 
 const galleryImages = [
-  { src: '/gallery/pure-music-lovers-front.jpg', alt: 'Evento Puros Melómanos - Foto 1' },
-  { src: '/gallery/diffusion-music-lovers-front.jpg', alt: 'Difusión Melómana - Foto 1' },
+  { src: '/gallery/pure-music-lovers-front.jpg', alt: 'Puros Melómanos - Banner Principal' },
+  { src: '/gallery/diffusion-music-lovers-front.jpg', alt: 'Difusión Melómana - Banner' },
   { src: '/gallery/second-event_1.jpg', alt: 'Segundo Evento - Foto 1' },
-  { src: '/gallery/second-event_2.jpg', alt: 'Segundo Evento - Foto 2' }
+  { src: '/gallery/second-event_2.jpg', alt: 'Segundo Evento - Foto 2' },
+  { src: '/gallery/second-event_3.jpg', alt: 'Segundo Evento - Foto 3' },
+  { src: '/gallery/second-event_4.jpg', alt: 'Segundo Evento - Foto 4' },
+  { src: '/gallery/second-event_5.jpg', alt: 'Segundo Evento - Foto 5' }
 ]
 
 function Gallery() {
