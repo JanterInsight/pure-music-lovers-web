@@ -225,6 +225,7 @@ Cargo.toml
 /dist/
 /build/
 /out/
+code/dist/
 *.bin
 *.dll
 *.so
