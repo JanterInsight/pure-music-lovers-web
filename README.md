@@ -37,25 +37,16 @@ Este sitio web permite:
 ├── CHANGELOG.md         # Project changelog
 ├── docs/                # Documentation directory
 │   └── CHANGELOG.md     # Detailed changelog
-├── code/                # Código fuente del proyecto
-│   ├── client/          # Frontend React + Vite
-│   │   ├── public/
-│   │   ├── src/
-│   │   │   ├── components/     # Componentes React
-│   │   │   ├── pages/          # Páginas (si aplica)
-│   │   │   ├── App.jsx
-│   │   │   ├── App.css
-│   │   │   └── main.jsx
-│   │   ├── index.html
-│   │   ├── package.json
-│   │   └── vite.config.js
-│   └── server/          # Backend Node.js + Express
-│       ├── src/
-│       │   ├── routes/        # Rutas de la API
-│       │   ├── controllers/   # Controladores
-│       │   └── index.js       # Servidor principal
-│       ├── package.json
-│       └── .env
+├── code/                # Código fuente del proyecto (Frontend React + Vite)
+│   ├── public/          # Archivos públicos (galería, favicon, etc.)
+│   ├── src/
+│   │   ├── components/     # Componentes React
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
 ├── gallery/             # Imágenes de eventos
 └── spec/                # Especificaciones del proyecto
     ├── README.md
@@ -77,14 +68,7 @@ Este sitio web permite:
 ### Frontend
 - **React 18+**: Biblioteca para interfaces de usuario
 - **Vite**: Bundler y herramienta de desarrollo
-- **React Router**: Enrutamiento para SPA
-- **CSS Modules**: Estilos componentizados
 - **JavaScript (ES6+)**: Lenguaje de programación
-
-### Backend
-- **Node.js**: Runtime de JavaScript
-- **Express**: Framework web para API REST
-- **CORS**: Manejo de cross-origin requests
 
 ### Herramientas
 - **Git**: Control de versiones
@@ -129,13 +113,13 @@ El proyecto sigue un flujo de **Spec-Driven Development**:
 1. Leer la especificación en `spec/features/NNN-nombre/spec.md`
 2. Revisar el plan técnico en `spec/features/NNN-nombre/plan.md`
 3. Seguir las tareas en `spec/features/NNN-nombre/tasks.md`
-4. Implementar el código en `code/client/` (frontend) o `code/server/` (backend)
+4. Implementar el código en `code/` (frontend)
 
 #### Frontend (React + Vite)
 
 ```bash
 # Instalar dependencias
-cd code/client
+cd code
 npm install
 
 # Iniciar servidor de desarrollo
@@ -143,19 +127,6 @@ npm run dev
 
 # Build para producción
 npm run build
-```
-
-#### Backend (Node.js + Express)
-
-```bash
-# Instalar dependencias
-cd code/server
-npm install
-
-# Iniciar servidor
-npm run dev
-
-# El servidor correrá en http://localhost:3001
 ```
 
 ## 📝 Configuración
