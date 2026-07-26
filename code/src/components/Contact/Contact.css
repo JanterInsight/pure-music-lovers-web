@@ -70,8 +70,13 @@
 .whatsapp-link {
   display: block;
   margin-top: 0.5rem;
-  color: var(--color-title) !important;
+  color: var(--color-text-secondary);
   font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: var(--color-title);
 }
 
 .contact-form-container {

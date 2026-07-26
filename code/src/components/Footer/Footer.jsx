@@ -25,7 +25,6 @@ function Footer() {
               <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
               <li><a href="#eventos">Eventos</a></li>
               <li><a href="#galeria">Galería</a></li>
-              <li><a href="#reseñas">Reseñas</a></li>
               <li><a href="#contactanos">Contáctanos</a></li>
             </ul>
           </div>

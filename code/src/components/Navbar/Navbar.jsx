@@ -34,7 +34,6 @@ function Navbar() {
           <li><a href="#sobre-nosotros" onClick={closeMenu}>Sobre nosotros</a></li>
           <li><a href="#eventos" onClick={closeMenu}>Eventos</a></li>
           <li><a href="#galeria" onClick={closeMenu}>Galería</a></li>
-          <li><a href="#reseñas" onClick={closeMenu}>Reseñas</a></li>
           <li><a href="#contactanos" className="navbar-contact-btn">Contáctanos</a></li>
         </ul>
       </div>

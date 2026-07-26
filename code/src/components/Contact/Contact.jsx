@@ -3,7 +3,7 @@ import './Contact.css'
 
 const contactInfo = {
   email: "puremusiclovers@gmail.com",
-  phone: "+53 XXXXXXXX",
+  phone: "+53 56187069",
   address: "Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez",
   whatsappGroups: [
     {
@@ -107,7 +107,7 @@ function Contact() {
             <div className="contact-info-item">
               <span className="contact-icon">📱</span>
               <div>
-                <h4>Teléfono</h4>
+                <h4>Teléfono(DJ MonarC - Jose)</h4>
                 <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
               </div>
             </div>
@@ -116,7 +116,13 @@ function Contact() {
               <span className="contact-icon">📍</span>
               <div>
                 <h4>Dirección</h4>
-                <p>{contactInfo.address}</p>
+                <a 
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {contactInfo.address}
+                </a>
               </div>
             </div>
 
