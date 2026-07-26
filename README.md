@@ -1,4 +1,15 @@
-# Puros Melómanos
+<div align="center">
+  <h1>🎵 Puros Melómanos</h1>
+  <p><strong>Tu comunidad de amantes de la música</strong></p>
+  <p>
+    <a href="https://janterinsight.github.io/pure-music-lovers-web/" target="_blank">
+      <img src="https://img.shields.io/badge/🌐-Live%20Demo-FFD700?style=for-the-badge" alt="Live Demo">
+    </a>
+    <a href="https://github.com/JanterInsight/pure-music-lovers-web">
+      <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
+    </a>
+  </p>
+</div>
 
 Sitio web oficial de **Puros Melómanos** - Tu comunidad de amantes de la música.
 
@@ -11,7 +22,6 @@ Este sitio web permite:
 - Conectar con otros amantes de la música
 - Vivir experiencias únicas en cada concierto
 - Explorar galerías de fotos de eventos pasados
-- Leer reseñas de la comunidad
 - Contactar con nosotros
 
 ## 🚀 Características
@@ -21,7 +31,6 @@ Este sitio web permite:
 - **Sobre Nosotros**: Información sobre la misión y visión de Puros Melómanos
 - **Eventos**: Contadores regresivos con estados (espera, en curso, finalizado)
 - **Galería**: Galería de imágenes de eventos con zoom y navegación
-- **Reseñas**: Sección de reseñas de la comunidad
 - **Contáctanos**: Formulario de contacto e información de contacto
 - **Footer**: Enlaces rápidos y información de copyright
 
@@ -47,7 +56,6 @@ Este sitio web permite:
 │   ├── index.html
 │   ├── package.json
 │   └── vite.config.js
-├── gallery/             # Imágenes de eventos
 └── spec/                # Especificaciones del proyecto
     ├── README.md
     ├── constitution/
@@ -86,12 +94,12 @@ Este sitio web permite:
 
 ## 🚦 Cómo Empezar
 
-### 1. Clonar o Copiar el Repositorio
+### 1. Clonar el Repositorio
 
 ```bash
 # Clonar el repositorio
-git clone <tu-repo-url> puros-melomanos
-cd puros-melomanos
+git clone https://github.com/JanterInsight/pure-music-lovers-web.git
+cd pure-music-lovers-web
 ```
 
 ### 2. Ver las Especificaciones
@@ -150,6 +158,36 @@ Cuando contribuyas a este proyecto:
 4. Nunca commitees archivos sensibles (.env, credenciales)
 5. Mantén la documentación actualizada
 6. Sigue el flujo de Spec-Driven Development
+
+## 🚀 Despliegue
+
+Este proyecto está configurado para desplegarse automáticamente en **GitHub Pages** mediante GitHub Actions.
+
+### Cómo funciona
+
+1. Cada vez que se hace push a la rama `master`, el workflow de GitHub Actions se ejecuta automáticamente.
+2. El workflow instala las dependencias, construye el proyecto y despliega el contenido en GitHub Pages.
+3. El sitio estará disponible en: [https://janterinsight.github.io/pure-music-lovers-web/](https://janterinsight.github.io/pure-music-lovers-web/)
+
+### Despliegue manual
+
+También puedes hacer un despliegue manual desde la pestaña **Actions** del repositorio en GitHub:
+1. Ve a la pestaña "Actions"
+2. Selecciona "Deploy to GitHub Pages"
+3. Haz clic en "Run workflow"
+
+### Build local
+
+```bash
+cd code
+npm run build
+```
+
+El build se genera en `code/dist/` y puedes previsualizarlo con:
+
+```bash
+npm run preview
+```
 
 ## 📄 Licencia
 
