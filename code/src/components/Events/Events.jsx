@@ -55,16 +55,23 @@ function formatTimeRemaining(targetDate) {
 }
 
 function EventCard({ event }) {
-  const [timeRemaining, setTimeRemaining] = useState(formatTimeRemaining(event.start))
-  const [status, setStatus] = useState(getEventStatus(event.start, event.end))
+  const initialStatus = getEventStatus(event.start, event.end)
+  const [status, setStatus] = useState(initialStatus)
+  const [timeRemaining, setTimeRemaining] = useState(
+    initialStatus === 'ongoing' ? formatTimeRemaining(event.end) : formatTimeRemaining(event.start)
+  )
 
   useEffect(() => {
     const timer = setInterval(() => {
       const newStatus = getEventStatus(event.start, event.end)
       setStatus(newStatus)
       
-      if (newStatus !== 'hidden') {
+      if (newStatus === 'waiting') {
         setTimeRemaining(formatTimeRemaining(event.start))
+      } else if (newStatus === 'ongoing') {
+        setTimeRemaining(formatTimeRemaining(event.end))
+      } else if (newStatus === 'finished') {
+        setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 })
       }
     }, 1000)
 
