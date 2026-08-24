@@ -21,13 +21,14 @@ Este sitio web permite:
 
 ## 🚀 Características
 
-- **Menú de Navegación**: Barra de menú fija con acceso a todas las secciones
-- **Hero Section**: Presentación impactante de la comunidad
+- **Menú de Navegación**: Barra de menú fija con acceso a todas las secciones e icono de marca
+- **Hero Section**: Presentación impactante de la comunidad con animación de entrada
 - **Sobre Nosotros**: Información sobre la misión y visión de Puros Melómanos
 - **Eventos**: Contadores regresivos con estados (espera, en curso, finalizado)
-- **Galería**: Galería de imágenes de eventos con zoom y navegación
-- **Contáctanos**: Formulario de contacto e información de contacto
+- **Galería**: Galería de imágenes de eventos con lightbox y navegación por teclado
+- **Contáctanos**: Formulario de contacto con validación e información de contacto
 - **Footer**: Enlaces rápidos y información de copyright
+- **Animaciones de scroll**: Aparición progresiva de elementos con `IntersectionObserver`, respetando `prefers-reduced-motion`
 
 ## 📁 Estructura del Proyecto
 
@@ -36,36 +37,52 @@ Este sitio web permite:
 ├── .clinerules          # AI assistant configuration and rules
 ├── .gitignore           # Git ignore rules for multiple platforms/languages
 ├── .editorconfig        # Editor configuration for consistency
+├── .github/
+│   └── workflows/
+│       └── deploy.yml   # Despliegue automático a GitHub Pages
+├── .VERSION             # Versión semántica del proyecto
 ├── LICENSE              # Project license (MIT)
 ├── README.md            # This file
-├── CHANGELOG.md         # Project changelog
 ├── docs/                # Documentation directory
 │   └── CHANGELOG.md     # Detailed changelog
-├── code/                # Código fuente del proyecto (Frontend React + Vite)
-│   ├── public/          # Archivos públicos (galería, favicon, etc.)
+├── code/                # Código fuente del proyecto (Frontend React + TypeScript + Vite)
+│   ├── public/          # Archivos estáticos (galería, iconos)
 │   ├── src/
-│   │   ├── components/     # Componentes React
-│   │   ├── App.jsx
+│   │   ├── components/     # Componentes React (.tsx)
+│   │   ├── hooks/          # Hooks personalizados (useRevealOnScroll)
+│   │   ├── data/           # Datos de eventos
+│   │   ├── utils/          # Utilidades (cálculos de tiempo)
+│   │   ├── types.ts        # Tipos compartidos
+│   │   ├── App.tsx
 │   │   ├── App.css
-│   │   └── main.jsx
+│   │   └── main.tsx
 │   ├── index.html
+│   ├── tsconfig.json
 │   ├── package.json
-│   └── vite.config.js
+│   └── vite.config.ts
 └── spec/                # Especificaciones del proyecto
     ├── README.md
     ├── constitution/
     │   ├── mission.md
     │   └── roadmap.md
     └── features/
+        ├── 00-main/
+        ├── 01-events/
+        ├── 02-gallery/
+        ├── 03-reviews/
+        ├── 04-login/
+        ├── 05-contact_us/
+        └── 06-Footer/
 ```
 
 ## 🛠️ Tecnologías y Estándares
 
 ### Frontend
 
-- **React 18+**: Biblioteca para interfaces de usuario
+- **React 18**: Biblioteca para interfaces de usuario
+- **TypeScript 5** (strict mode): Lenguaje de programación
 - **Vite**: Bundler y herramienta de desarrollo
-- **JavaScript (ES6+)**: Lenguaje de programación
+- **IntersectionObserver API**: Animaciones de aparición al hacer scroll
 
 ### Herramientas
 
@@ -113,7 +130,7 @@ El proyecto sigue un flujo de **Spec-Driven Development**:
 3. Seguir las tareas en `spec/features/NNN-nombre/tasks.md`
 4. Implementar el código en `code/` (frontend)
 
-#### Frontend (React + Vite)
+#### Frontend (React + TypeScript + Vite)
 
 ```bash
 # Instalar dependencias
@@ -123,7 +140,10 @@ npm install
 # Iniciar servidor de desarrollo
 npm run dev
 
-# Build para producción
+# Verificar tipos
+npm run typecheck
+
+# Build para producción (typecheck + build)
 npm run build
 ```
 
@@ -146,7 +166,7 @@ Mantiene estilos de codificación consistentes across diferentes editores.
 Cuando contribuyas a este proyecto:
 
 1. Sigue los estándares de código definidos en `.clinerules`
-2. Actualiza `CHANGELOG.md` para todos los cambios
+2. Actualiza `docs/CHANGELOG.md` para todos los cambios
 3. Escribe mensajes de commit en inglés
 4. Nunca commitees archivos sensibles (.env, credenciales)
 5. Mantén la documentación actualizada
@@ -204,13 +224,11 @@ Este proyecto sigue [Semantic Versioning](https://semver.org/):
 
 ## 👥 Creadores
 
-- Janlier Rojas Santana
-- Alejandro Izada Diaz
-- Andrés Alejandro Morales
+- [Janlier Rojas Santana](https://janterinsight.github.io/professional-portfolio/)
 
 Hecho con ❤️ para nuestra comunidad de melómanos.
 
 ---
 
-**Versión del Proyecto**: 1.0.0  
-**Última Actualización**: 2026-07-25
+**Versión del Proyecto**: 1.2.0  
+**Última Actualización**: 2026-08-24

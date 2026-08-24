@@ -1,94 +1,59 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Todos los cambios notables de este proyecto se documentan en este archivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
+y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
-## [Unreleased]
+## [1.2.0] - 2026-08-24
 
 ### Added
-- Project customization for Puros Melómanos
-- Updated project configuration files (.clinerules, .agents/project.yaml, .agents/README.md)
-- Updated README.md with project-specific information
-- Updated LICENSE with correct copyright holders
-- Updated .gitignore to preserve spec/ and docs/ markdown files
-- Created spec/constitution/mission.md
+
+- Animaciones de aparición al hacer scroll (`IntersectionObserver`) en todas las
+  secciones, con variantes `up` / `left` / `right` / `scale`, delays escalonados y
+  soporte de `prefers-reduced-motion`
+  (`src/hooks/useRevealOnScroll.ts`, `src/components/Reveal/`)
+- Eventos nuevos con cuenta regresiva: Noche de Jazz (15/sep), Rock Clásico
+  (15/oct) y Salsa y Son Cubano (15/nov) de 2026, 8:00 PM, Radio Banes
+- Icono de marca en la barra de navegación (`Icon-Main-Full-64x64.png`)
+- Script `npm run typecheck`
 
 ### Changed
-- Project name from "Project Template" to "Puros Melómanos"
-- Project identification updated across all configuration files
 
-### Deprecated
-- 
-
-### Removed
-- 
-
-### Fixed
-- 
-
-### Security
-- 
-
-## [1.0.0] - 2025-07-16
-
-### Added
-- Main project functionality
-- Base configuration
-- Core features
-
-### Changed
-- 
-
-### Deprecated
-- 
-
-### Removed
-- 
+- **Migración completa del proyecto de JavaScript a TypeScript** con `strict`
+  mode y `noUncheckedIndexedAccess` activados
+  - Componentes `.jsx` → `.tsx`
+  - Tipos compartidos en `src/types.ts`
+  - Datos de eventos en `src/data/events.ts`
+  - Utilidades de tiempo en `src/utils/time.ts`
+  - Configuración de Vite migrada a `vite.config.ts`
+- Favicon PNG de 32x32 con fondo exterior transparente (interior del logo intacto)
+- Transición de entrada del hero más lenta y cinematográfica (1.8s)
+- Footer: crédito único para Janlier Rojas Santana
 
 ### Fixed
-- Initial bug fixes
 
-### Security
-- 
+- Favicon roto (apuntaba a `vite.svg` inexistente)
+- Espacio faltante entre el autor y el texto en los créditos del footer
+- Referencia a `hero-bg.jpg` inexistente en los estilos del hero
+- Observer que se registraba antes del primer pintado, lo que hacía que la
+  animación del hero se saltara la transición
 
-## [0.1.0] - 2025-01-15
+## [1.1.0] - 2026-08
 
 ### Added
-- Initial project setup
-- Basic structure
 
----
+- Sección de eventos con cuenta regresiva y estados (en espera, en curso,
+  finalizado, oculto)
+- Galería de imágenes con lightbox, navegación por teclado (Escape, flechas)
+- Formulario de contacto con validación y información de contacto
+- Footer con enlaces rápidos y créditos
 
-## How to Maintain This CHANGELOG
+## [1.0.0] - 2026-07-25
 
-### Version Categories
-- **Added** for new features
-- **Changed** for changes in existing functionality
-- **Deprecated** for soon-to-be removed features
-- **Removed** for now removed features
-- **Fixed** for any bug fixes
-- **Security** in case of vulnerabilities
+### Added
 
-### Version Numbering
-Follow [Semantic Versioning](https://semver.org/):
-- **MAJOR** version when you make incompatible API changes
-- **MINOR** version when you add functionality in a backwards compatible manner
-- **PATCH** version when you make backwards compatible bug fixes
-
-### Guidelines
-1. Always update this file when releasing a new version
-2. Group changes by category (Added, Changed, Fixed, etc.)
-3. Write changes in **English**
-4. Be descriptive but concise
-5. Include issue/PR references when applicable
-6. Update the date for each release
-
-### GitHub Links
-Replace `OWNER/REPO` with your actual GitHub username and repository name:
-
-```markdown
-[unreleased]: https://github.com/OWNER/REPO/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/OWNER/REPO/releases/tag/v1.0.0
-[0.1.0]: https://github.com/OWNER/REPO/releases/tag/v0.1.0
+- Lanzamiento inicial del sitio de Puros Melómanos
+- Navbar fija, Hero, sección Sobre Nosotros
+- Configuración de despliegue automático a GitHub Pages mediante GitHub Actions
+- Flujo de Spec-Driven Development documentado en `spec/`
