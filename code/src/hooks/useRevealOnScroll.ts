@@ -20,17 +20,25 @@ export function useRevealOnScroll<T extends HTMLElement>(
       return
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed')
-          observer.unobserve(entry.target)
-        }
-      }
-    }, options)
+    let observer: IntersectionObserver | undefined
 
-    observer.observe(element)
-    return () => observer.disconnect()
+    const rafId = requestAnimationFrame(() => {
+      observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed')
+            observer?.unobserve(entry.target)
+          }
+        }
+      }, options)
+
+      observer.observe(element)
+    })
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      observer?.disconnect()
+    }
   }, [])
 
   return ref
