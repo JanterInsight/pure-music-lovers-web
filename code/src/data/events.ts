@@ -17,4 +17,28 @@ export const eventsData: MusicalEvent[] = [
     location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
     mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
   },
+  {
+    id: 3,
+    title: 'Noche de Jazz',
+    start: '2026-09-15T20:00:00',
+    end: '2026-09-15T23:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
+  {
+    id: 4,
+    title: 'Rock Clásico',
+    start: '2026-10-15T20:00:00',
+    end: '2026-10-15T23:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
+  {
+    id: 5,
+    title: 'Salsa y Son Cubano',
+    start: '2026-11-15T20:00:00',
+    end: '2026-11-15T23:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
 ]
