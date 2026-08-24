@@ -4,10 +4,6 @@ import './Navbar.css'
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
-
   const closeMenu = () => {
     setMenuOpen(false)
   }
@@ -20,10 +16,11 @@ function Navbar() {
           <span className="navbar-title">Puros Melómanos</span>
         </a>
 
-        <button 
+        <button
           className={`navbar-toggle ${menuOpen ? 'active' : ''}`}
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           <span></span>
           <span></span>
@@ -34,7 +31,7 @@ function Navbar() {
           <li><a href="#sobre-nosotros" onClick={closeMenu}>Sobre nosotros</a></li>
           <li><a href="#eventos" onClick={closeMenu}>Eventos</a></li>
           <li><a href="#galeria" onClick={closeMenu}>Galería</a></li>
-          <li><a href="#contactanos" className="navbar-contact-btn">Contáctanos</a></li>
+          <li><a href="#contactanos" className="navbar-contact-btn" onClick={closeMenu}>Contáctanos</a></li>
         </ul>
       </div>
     </nav>

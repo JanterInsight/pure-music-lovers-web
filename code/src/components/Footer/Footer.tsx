@@ -14,7 +14,7 @@ function Footer() {
 
           <div className="footer-description">
             <p>
-              Tu comunidad de amantes de la música. Descubre eventos increíbles 
+              Tu comunidad de amantes de la música. Descubre eventos increíbles
               y conecta con otros apasionados por la música.
             </p>
           </div>
@@ -32,7 +32,7 @@ function Footer() {
           <div className="footer-copyright">
             <p>© {currentYear} Puros Melómanos. Todos los derechos reservados.</p>
             <p className="footer-credits">
-              Hecho por <a href="https://janterinsight.github.io/professional-portfolio/" target="_blank" rel="noopener noreferrer" className="footer-link">Janlier Rojas Santana</a>, Alejandro Izada Diaz y Andrés Alejandro Morales 
+              Hecho por <a href="https://janterinsight.github.io/professional-portfolio/" target="_blank" rel="noopener noreferrer" className="footer-link">Janlier Rojas Santana</a>, Alejandro Izada Diaz y Andrés Alejandro Morales
               con ❤️ para nuestra comunidad.
             </p>
           </div>
