@@ -1,3 +1,4 @@
+import Reveal from '../Reveal/Reveal'
 import './Footer.css'
 
 function Footer() {
@@ -6,7 +7,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-content">
+        <Reveal variant="scale" className="footer-content">
           <div className="footer-brand">
             <h3 className="footer-logo">Puros Melómanos</h3>
             <p className="footer-tagline">La música nos une</p>
@@ -37,7 +38,7 @@ function Footer() {
               con ❤️ para nuestra comunidad.
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </footer>
   )

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { MusicalEvent, EventStatus, TimeRemaining } from '../../types'
 import { getEventStatus, formatTimeRemaining, buildMapsUrl } from '../../utils/time'
 import { eventsData } from '../../data/events'
+import Reveal from '../Reveal/Reveal'
 import './Events.css'
 
 const statusLabels: Record<Exclude<EventStatus, 'hidden'>, string> = {
@@ -14,9 +15,10 @@ const ZERO_TIME: TimeRemaining = { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
 interface EventCardProps {
   event: MusicalEvent
+  index: number
 }
 
-function EventCard({ event }: EventCardProps) {
+function EventCard({ event, index }: EventCardProps) {
   const [status, setStatus] = useState<EventStatus>(() => getEventStatus(event.start, event.end))
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(() =>
     formatTimeRemaining(status === 'ongoing' ? event.end : event.start),
@@ -42,7 +44,7 @@ function EventCard({ event }: EventCardProps) {
   if (status === 'hidden') return null
 
   return (
-    <div className={`event-card event-status-${status}`}>
+    <Reveal variant="scale" delay={index * 150} className={`event-card event-status-${status}`}>
       <h3 className="event-title">{event.title}</h3>
 
       <div className="event-counter">
@@ -63,7 +65,7 @@ function EventCard({ event }: EventCardProps) {
       <a href={buildMapsUrl(event.mapsQuery)} target="_blank" rel="noopener noreferrer" className="event-location">
         📍 {event.location}
       </a>
-    </div>
+    </Reveal>
   )
 }
 
@@ -89,10 +91,10 @@ function Events() {
   return (
     <section className="events" id="eventos">
       <div className="container">
-        <h2 className="events-title">Próximos Eventos</h2>
+        <Reveal as="h2" className="events-title">Próximos Eventos</Reveal>
         <div className="events-grid">
-          {activeEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
+          {activeEvents.map((event, index) => (
+            <EventCard key={event.id} event={event} index={index} />
           ))}
         </div>
       </div>

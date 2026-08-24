@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import type { ContactFormData, ContactFormErrors, WhatsAppGroup } from '../../types'
 import { buildMapsUrl } from '../../utils/time'
+import Reveal from '../Reveal/Reveal'
 import './Contact.css'
 
 const contactInfo = {
@@ -77,52 +78,62 @@ function Contact() {
   return (
     <section className="contact" id="contactanos">
       <div className="container">
-        <h2 className="contact-title">Contáctanos</h2>
+        <Reveal as="h2" className="contact-title">Contáctanos</Reveal>
 
         <div className="contact-content">
           <div className="contact-info">
-            <h3 className="contact-info-title">Información de Contacto</h3>
+            <Reveal variant="left">
+              <h3 className="contact-info-title">Información de Contacto</h3>
+            </Reveal>
 
-            <div className="contact-info-item">
-              <span className="contact-icon">📧</span>
-              <div>
-                <h4>Email</h4>
-                <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+            <Reveal variant="left" delay={100}>
+              <div className="contact-info-item">
+                <span className="contact-icon">📧</span>
+                <div>
+                  <h4>Email</h4>
+                  <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+                </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="contact-info-item">
-              <span className="contact-icon">📱</span>
-              <div>
-                <h4>Teléfono(DJ MonarC - Jose)</h4>
-                <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
+            <Reveal variant="left" delay={200}>
+              <div className="contact-info-item">
+                <span className="contact-icon">📱</span>
+                <div>
+                  <h4>Teléfono(DJ MonarC - Jose)</h4>
+                  <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
+                </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="contact-info-item">
-              <span className="contact-icon">📍</span>
-              <div>
-                <h4>Dirección</h4>
-                <a href={buildMapsUrl(contactInfo.address)} target="_blank" rel="noopener noreferrer">
-                  {contactInfo.address}
-                </a>
-              </div>
-            </div>
-
-            <div className="contact-info-item">
-              <span className="contact-icon">💬</span>
-              <div>
-                <h4>Grupos de WhatsApp</h4>
-                {contactInfo.whatsappGroups.map((group) => (
-                  <a key={group.url} href={group.url} target="_blank" rel="noopener noreferrer" className="whatsapp-link">
-                    {group.name}
+            <Reveal variant="left" delay={300}>
+              <div className="contact-info-item">
+                <span className="contact-icon">📍</span>
+                <div>
+                  <h4>Dirección</h4>
+                  <a href={buildMapsUrl(contactInfo.address)} target="_blank" rel="noopener noreferrer">
+                    {contactInfo.address}
                   </a>
-                ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
+
+            <Reveal variant="left" delay={400}>
+              <div className="contact-info-item">
+                <span className="contact-icon">💬</span>
+                <div>
+                  <h4>Grupos de WhatsApp</h4>
+                  {contactInfo.whatsappGroups.map((group) => (
+                    <a key={group.url} href={group.url} target="_blank" rel="noopener noreferrer" className="whatsapp-link">
+                      {group.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="contact-form-container">
+          <Reveal variant="right" delay={150} className="contact-form-container">
             <h3 className="contact-form-title">Envíanos un Mensaje</h3>
             <form onSubmit={handleSubmit} className="contact-form" noValidate>
               <div className="form-group">
@@ -185,7 +196,7 @@ function Contact() {
                 {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
               </button>
             </form>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

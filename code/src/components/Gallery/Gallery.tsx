@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { GalleryImage } from '../../types'
+import Reveal from '../Reveal/Reveal'
 import './Gallery.css'
 
 const base = import.meta.env.BASE_URL
@@ -57,16 +58,18 @@ function Gallery() {
     <>
       <section className="gallery" id="galeria">
         <div className="container">
-          <h2 className="gallery-title">Galería</h2>
+          <Reveal as="h2" className="gallery-title">Galería</Reveal>
           <div className="gallery-grid">
             {galleryImages.map((image, index) => (
-              <div
+              <Reveal
                 key={image.src}
+                variant="scale"
+                delay={(index % 4) * 90}
                 className="gallery-item"
                 onClick={() => setSelectedImageIndex(index)}
               >
                 <img src={image.src} alt={image.alt} loading="lazy" />
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

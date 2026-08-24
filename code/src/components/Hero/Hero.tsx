@@ -1,9 +1,10 @@
+import Reveal from '../Reveal/Reveal'
 import './Hero.css'
 
 function Hero() {
   return (
     <section className="hero" id="inicio">
-      <div className="hero-content">
+      <Reveal className="hero-content" delay={100}>
         <h1 className="hero-title">Puros Melómanos</h1>
         <h2 className="hero-subtitle">Tu comunidad de amantes de la música</h2>
         <p className="hero-description">
@@ -14,7 +15,7 @@ function Hero() {
           <a href="#sobre-nosotros" className="btn btn-primary">Conócenos</a>
           <a href="#contactanos" className="btn btn-secondary">Contáctanos</a>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
