@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './Navbar.css'
 
+const base = import.meta.env.BASE_URL
+
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -12,7 +14,13 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <a href="#" className="navbar-brand">
-          <span className="navbar-icon">🎵</span>
+          <img
+            src={`${base}icons/Icon-Main-Full-64x64.png`}
+            alt="Logo de Puros Melómanos"
+            className="navbar-icon"
+            width={32}
+            height={32}
+          />
           <span className="navbar-title">Puros Melómanos</span>
         </a>
 

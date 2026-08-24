@@ -28,7 +28,10 @@
 }
 
 .navbar-icon {
-  font-size: 1.5rem;
+  width: 32px;
+  height: 32px;
+  display: block;
+  border-radius: 6px;
 }
 
 .navbar-title {
