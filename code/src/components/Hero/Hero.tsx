@@ -4,7 +4,7 @@ import './Hero.css'
 function Hero() {
   return (
     <section className="hero" id="inicio">
-      <Reveal className="hero-content" delay={100}>
+      <Reveal className="hero-content" delay={100} duration={1400}>
         <h1 className="hero-title">Puros Melómanos</h1>
         <h2 className="hero-subtitle">Tu comunidad de amantes de la música</h2>
         <p className="hero-description">

@@ -13,6 +13,7 @@ interface RevealProps {
   className?: string
   variant?: RevealVariant
   delay?: number
+  duration?: number
   onClick?: () => void
 }
 
@@ -22,6 +23,7 @@ function Reveal({
   className = '',
   variant = 'up',
   delay = 0,
+  duration,
   onClick,
 }: RevealProps) {
   const ref = useRevealOnScroll<HTMLElement>()
@@ -30,7 +32,10 @@ function Reveal({
     .filter(Boolean)
     .join(' ')
 
-  const style: CSSProperties | undefined = delay > 0 ? { transitionDelay: `${delay}ms` } : undefined
+  const style: CSSProperties = {
+    ...(delay > 0 ? { transitionDelay: `${delay}ms` } : null),
+    ...(duration ? { transitionDuration: `${duration}ms` } : null),
+  }
 
   return createElement(as, { ref, className: classes, style, onClick }, children)
 }
