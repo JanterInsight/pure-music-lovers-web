@@ -34,6 +34,8 @@ y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 - Titular del hero que se partía a media palabra al convertir espacios en
   `\u00A0`; ahora el ajuste de línea ocurre entre palabras correctamente
+- Eliminado el scroll-cue (línea vertical + "SCROLL") que quedaba visualmente
+  entre los botones "Conócenos" y "Contáctanos"; ya no aparece en el Hero
 
 ## [1.2.1] - 2026-11-22
 

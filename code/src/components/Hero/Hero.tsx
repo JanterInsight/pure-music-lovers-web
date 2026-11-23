@@ -78,13 +78,6 @@ function Hero() {
           </div>
         </Reveal>
       </div>
-
-      <a href="#sobre-nosotros" className="hero-scroll-cue" aria-label="Ir a Sobre nosotros">
-        <span className="hero-scroll-cue-track">
-          <span className="hero-scroll-cue-dot" />
-        </span>
-        <span className="hero-scroll-cue-label">Scroll</span>
-      </a>
     </section>
   )
 }
