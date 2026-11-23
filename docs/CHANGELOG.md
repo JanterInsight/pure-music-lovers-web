@@ -5,6 +5,36 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.3.0] - 2026-11-22
+
+### Added
+
+- **Sistema de motion experimental** en `App.css`: tokens expresivos
+  `--gold-ambient`, `--gold-vignette`, `--gold-glow-soft`,
+  `--gold-line-gradient`, y lenguaje de movimiento `--ease-expo`,
+  `--ease-smooth`, duraciones `--duration-fast/base/slow/hero`, y tokens
+  de layout `--container-narrow`, `--container-wide`, `--space-unit`
+- **Componente `KineticText`** que divide el texto en caracteres con
+  entrada escalonada; preserva el ajuste de línea por palabras
+  (`inline-block` + espacios reales como puntos de corte) y soporta `\n`
+  para saltos duros. Opción `outlineFill` para titular con borde dorado
+  que se rellena de izquierda a derecha al asentarse la entrada
+- Utilidades compartidas `.stage-glow`, `.hairline`, `.pull-quote`
+
+### Changed
+
+- **Hero rediseñado** como pieza statement: eyebrow dorado espaciado sobre
+  el titular, titular "Puros Melómanos" con borde dorado que rellena en
+  barrido, parallax sutil del glow ambiental al hacer scroll, glow de foco
+  (`stage light`) superior, y cue de scroll animado en la base
+- Bounce easing retirado del lenguaje de motion (reemplazado por
+  `--ease-smooth`/`--ease-expo`, sin overshoot) tras hallazgo del detector
+
+### Fixed
+
+- Titular del hero que se partía a media palabra al convertir espacios en
+  `\u00A0`; ahora el ajuste de línea ocurre entre palabras correctamente
+
 ## [1.2.1] - 2026-11-22
 
 ### Changed (Accesibilidad y Craft)

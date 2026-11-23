@@ -1,21 +1,90 @@
+import { useEffect, useRef } from 'react'
+import KineticText from '../KineticText/KineticText'
 import Reveal from '../Reveal/Reveal'
 import './Hero.css'
 
 function Hero() {
+  const heroRef = useRef<HTMLElement | null>(null)
+  const glowRef = useRef<HTMLDivElement | null>(null)
+
+  // Subtle parallax: the ambient stage-glow drifts slower than the copy.
+  useEffect(() => {
+    const hero = heroRef.current
+    const glow = glowRef.current
+    if (!hero || !glow) return
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) return
+
+    let raf: number | null = null
+
+    const update = () => {
+      raf = null
+      const rect = hero.getBoundingClientRect()
+      // 0 when hero top is at viewport top, grows as it scrolls away
+      const progress = Math.min(1, Math.max(0, -rect.top / rect.height))
+      glow.style.transform = `translateY(${progress * 60}px) scale(${1 + progress * 0.15})`
+      glow.style.opacity = String(1 - progress * 0.7)
+      hero.style.setProperty('--scroll', progress.toFixed(3))
+    }
+
+    const onScroll = () => {
+      if (raf === null) raf = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf !== null) cancelAnimationFrame(raf)
+    }
+  }, [])
+
   return (
-    <section className="hero" id="inicio">
-      <Reveal className="hero-content" delay={200} duration={1800}>
-        <h1 className="hero-title">Puros Melómanos</h1>
-        <h2 className="hero-subtitle">Tu comunidad de amantes de la música</h2>
-        <p className="hero-description">
-          Descubre eventos musicales increíbles, conecta con otros amantes de la música
-          y vive experiencias únicas en cada concierto
-        </p>
-        <div className="hero-buttons">
-          <a href="#sobre-nosotros" className="btn btn-primary">Conócenos</a>
-          <a href="#contactanos" className="btn btn-secondary">Contáctanos</a>
-        </div>
-      </Reveal>
+    <section className="hero" id="inicio" ref={heroRef}>
+      <div className="stage-glow" ref={glowRef} aria-hidden="true" />
+
+      <div className="hero-vignette" aria-hidden="true" />
+
+      <div className="container hero-inner">
+        <Reveal as="p" className="hero-eyebrow" variant="up" delay={150} duration={900}>
+          Radio Banes · Cuba
+        </Reveal>
+
+        <KineticText as="h1" className="hero-title" outlineFill stagger={70} delay={350}>
+          Puros Melómanos
+        </KineticText>
+
+        <KineticText as="h2" className="hero-subtitle" stagger={30} delay={1100}>
+          Tu comunidad de amantes de la música
+        </KineticText>
+
+        <Reveal className="hero-content" delay={1700} duration={1200}>
+          <p className="hero-description">
+            Descubre eventos musicales increíbles, conecta con otros amantes de la música
+            y vive experiencias únicas en cada concierto.
+          </p>
+
+          <div className="hero-buttons">
+            <a href="#sobre-nosotros" className="btn btn-primary">
+              <span>Conócenos</span>
+            </a>
+            <a href="#contactanos" className="btn btn-secondary">
+              <span>Contáctanos</span>
+            </a>
+          </div>
+        </Reveal>
+      </div>
+
+      <a href="#sobre-nosotros" className="hero-scroll-cue" aria-label="Ir a Sobre nosotros">
+        <span className="hero-scroll-cue-track">
+          <span className="hero-scroll-cue-dot" />
+        </span>
+        <span className="hero-scroll-cue-label">Scroll</span>
+      </a>
     </section>
   )
 }
