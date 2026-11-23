@@ -47,13 +47,13 @@ function EventCard({ event, index }: EventCardProps) {
     <Reveal variant="scale" delay={index * 150} className={`event-card event-status-${status}`}>
       <h3 className="event-title">{event.title}</h3>
 
-      <div className="event-counter">
+      <div className="event-counter" role="timer" aria-live="polite" aria-atomic="true">
         <TimeBlock value={timeRemaining.days} label="días" />
-        <span className="time-separator">:</span>
+        <span className="time-separator" aria-hidden="true">:</span>
         <TimeBlock value={timeRemaining.hours} label="horas" />
-        <span className="time-separator">:</span>
+        <span className="time-separator" aria-hidden="true">:</span>
         <TimeBlock value={timeRemaining.minutes} label="minutos" />
-        <span className="time-separator">:</span>
+        <span className="time-separator" aria-hidden="true">:</span>
         <TimeBlock value={timeRemaining.seconds} label="segundos" />
       </div>
 

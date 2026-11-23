@@ -5,6 +5,38 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.2.1] - 2026-11-22
+
+### Changed (Accesibilidad y Craft)
+
+- **Lightbox de galería accesible**: `role="dialog"`, `aria-modal`, `aria-labelledby`,
+  focus trap completo (Tab/Escape), foco restaurado al cerrar y `aria-label`
+  descriptivos en botones prev/next/close con contexto de la imagen
+- **Contador de eventos**: `role="timer"` con `aria-live="polite"` y `aria-atomic`;
+  separadores `:` marcados con `aria-hidden`
+- **Formulario de contacto**: `aria-describedby` en inputs vinculados a los mensajes
+  de error (`id` + `role="alert"`), `aria-invalid` y atributo `required`
+- **Navbar móvil**: focus trap al abrir el menú, `aria-controls`, cierre con Escape y
+  devolución del foco al toggle; `aria-label` dinámico según estado abierto/cerrado
+- **Pulse del indicador de estado** envuelto en `@media (prefers-reduced-motion: no-preference)`
+
+### Changed (Theming y Layout)
+
+- Tokens de diseño ampliados en `App.css`: `--font-mono`, `--shadow-sm/md/lg`,
+  `--shadow-glow`, `--shadow-glow-strong`, `--radius-sm/md/lg`, `--container-max`,
+  `--navbar-height`; utilidad `.visually-hidden` añadida
+- `--font-mono` aplicado al `.time-value` del contador (antes hardcoded)
+- Stripe rígida `::before` de 4px en `event-card` reemplazada por un glow superior
+  degradado (`--status-color`) más sofisticado y sin el "tell" de UI generada
+- Galería responsive: `minmax(160px, 1fr)` y una columna por debajo de 480px
+  (antes 150px provocaba touch targets < 44px y overflow en viewports estrechos)
+- Footer reorganizado a grid de 3 columnas equilibradas (`1.5fr 1fr 1fr`)
+- `max-width` del container usando `var(--container-max)`
+
+### Fixed
+
+- Errores de tipo TS con `noUncheckedIndexedAccess` en los `aria-label` del lightbox
+
 ## [1.2.0] - 2026-08-24
 
 ### Added

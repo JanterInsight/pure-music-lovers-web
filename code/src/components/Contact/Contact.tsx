@@ -146,8 +146,11 @@ function Contact() {
                   onChange={handleChange}
                   className={errors.name ? 'error' : ''}
                   placeholder="Tu nombre completo"
+                  aria-invalid={errors.name ? 'true' : undefined}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
+                  required
                 />
-                {errors.name && <span className="error-message">{errors.name}</span>}
+                {errors.name && <span id="name-error" role="alert" className="error-message">{errors.name}</span>}
               </div>
 
               <div className="form-group">
@@ -160,8 +163,11 @@ function Contact() {
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
                   placeholder="tu@email.com"
+                  aria-invalid={errors.email ? 'true' : undefined}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  required
                 />
-                {errors.email && <span className="error-message">{errors.email}</span>}
+                {errors.email && <span id="email-error" role="alert" className="error-message">{errors.email}</span>}
               </div>
 
               <div className="form-group">
@@ -174,8 +180,11 @@ function Contact() {
                   onChange={handleChange}
                   className={errors.subject ? 'error' : ''}
                   placeholder="Asunto del mensaje"
+                  aria-invalid={errors.subject ? 'true' : undefined}
+                  aria-describedby={errors.subject ? 'subject-error' : undefined}
+                  required
                 />
-                {errors.subject && <span className="error-message">{errors.subject}</span>}
+                {errors.subject && <span id="subject-error" role="alert" className="error-message">{errors.subject}</span>}
               </div>
 
               <div className="form-group">
@@ -188,8 +197,11 @@ function Contact() {
                   className={errors.message ? 'error' : ''}
                   placeholder="Escribe tu mensaje aquí..."
                   rows={5}
+                  aria-invalid={errors.message ? 'true' : undefined}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
+                  required
                 ></textarea>
-                {errors.message && <span className="error-message">{errors.message}</span>}
+                {errors.message && <span id="message-error" role="alert" className="error-message">{errors.message}</span>}
               </div>
 
               <button type="submit" className="submit-btn" disabled={isSubmitting}>
