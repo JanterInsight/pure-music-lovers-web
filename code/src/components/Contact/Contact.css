@@ -1,167 +1,286 @@
 .contact {
   background-color: var(--color-bg-secondary);
   padding: 5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-title {
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-title);
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   font-weight: 700;
+  position: relative;
+}
+
+.contact-subtitle {
+  text-align: center;
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+  margin-bottom: 3rem;
+  position: relative;
+  font-size: 1.05rem;
 }
 
 .contact-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  align-items: start;
 }
 
+/* ------------------------------------------------------------
+   Contact info — translucent cards, sticky on desktop
+   ------------------------------------------------------------ */
+
 .contact-info {
-  background-color: var(--color-bg-primary);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 2px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: calc(var(--navbar-height) + 1.5rem);
 }
 
 .contact-info-title {
   font-size: 1.75rem;
   color: var(--color-title);
-  margin-bottom: 2rem;
   font-weight: 700;
 }
 
 .contact-info-item {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.1rem;
   align-items: flex-start;
+  padding: 1.4rem 1.5rem;
+  background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.contact-info-item:hover {
+  border-color: var(--color-border);
+  box-shadow: var(--card-glow-hover);
+  transform: translateY(-2px);
 }
 
 .contact-icon {
-  font-size: 2rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
-}
-
-.contact-info-item h4 {
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  background: color-mix(in srgb, var(--color-title) 6%, transparent);
   color: var(--color-title);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
 }
 
-.contact-info-item a,
-.contact-info-item p {
-  color: var(--color-text-secondary);
+.contact-svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.contact-info-body h4 {
+  color: var(--color-title);
   font-size: 1rem;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.contact-info-body a,
+.contact-info-body p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
   word-break: break-word;
+  transition: color var(--duration-fast) var(--ease-smooth);
 }
 
-.contact-info-item a {
-  transition: color 0.3s ease;
-}
-
-.contact-info-item a:hover {
+.contact-info-body a:hover {
   color: var(--color-title);
+}
+
+.whatsapp-group-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.65rem;
 }
 
 .whatsapp-link {
-  display: block;
-  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-radius: var(--radius-lg);
   color: var(--color-text-secondary);
+  font-size: 0.9rem;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition:
+    border-color var(--duration-fast) var(--ease-smooth),
+    color var(--duration-fast) var(--ease-smooth),
+    background-color var(--duration-fast) var(--ease-smooth);
 }
 
 .whatsapp-link:hover {
+  border-color: var(--color-title);
   color: var(--color-title);
+  background: color-mix(in srgb, var(--color-title) 8%, transparent);
 }
 
+.whatsapp-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-fast) var(--ease-expo);
+}
+
+.whatsapp-link:hover .whatsapp-arrow {
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------
+   Form — floating labels + gold hairline that grows on focus
+   ------------------------------------------------------------ */
+
 .contact-form-container {
-  background-color: var(--color-bg-primary);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 2px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
 }
 
 .contact-form-title {
   font-size: 1.75rem;
   color: var(--color-title);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   font-weight: 700;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  position: relative;
 }
 
 .form-group label {
+  position: absolute;
+  left: 0.95rem;
+  top: 0.95rem;
   color: var(--color-text-secondary);
   font-size: 1rem;
   font-weight: 600;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform var(--duration-fast) var(--ease-expo),
+    color var(--duration-fast) var(--ease-smooth);
+  opacity: 0.75;
 }
 
-.form-group input,
-.form-group textarea {
-  background-color: var(--color-bg-secondary);
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
+/* Float the label when the field has content or focus */
+.form-group:has(.form-input:not(:placeholder-shown)) label,
+.form-group:has(.form-input:focus) label {
+  transform: translateY(-0.6rem) scale(0.78);
+  color: var(--color-title);
+  opacity: 1;
+}
+
+.form-input {
+  width: 100%;
+  background-color: color-mix(in srgb, var(--color-bg-secondary) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 35%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem 0.95rem 0.55rem;
   color: var(--color-text-primary);
   font-family: var(--font-main);
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition:
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth);
+  /* Gold hairline grows from left on focus */
+  background-image: linear-gradient(var(--color-title), var(--color-title));
+  background-size: 0% var(--input-hairline-h);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--duration-fast) var(--ease-expo);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.form-input:focus {
   outline: none;
-  border-color: var(--color-title);
-  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+  border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
+  box-shadow: var(--input-focus-glow);
+  background-size: 100% var(--input-hairline-h);
 }
 
-.form-group input.error,
-.form-group textarea.error {
+.form-input.error {
   border-color: var(--color-finished);
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-finished) 20%, transparent);
 }
 
+.form-group textarea.form-input {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.6;
+}
+
+/* Error states — role="alert" text, subtle shake once */
 .error-message {
+  display: block;
   color: var(--color-finished);
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  animation: field-error-shake 320ms var(--ease-smooth) 1;
+}
+
+@keyframes field-error-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
 }
 
 .submit-btn {
+  position: relative;
+  align-self: flex-start;
+  min-width: 12rem;
+  min-height: 3.25rem;
   background-color: var(--color-title);
   color: var(--color-bg-primary);
   border: 2px solid var(--color-title);
-  border-radius: 50px;
+  border-radius: var(--radius-lg);
   padding: 1rem 2rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background-color var(--duration-fast) var(--ease-smooth),
+    color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
   font-family: var(--font-main);
 }
 
 .submit-btn:hover:not(:disabled) {
   background-color: transparent;
   color: var(--color-title);
+  box-shadow: var(--shadow-glow);
   transform: translateY(-2px);
 }
 
@@ -170,18 +289,184 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
-  .contact {
-    padding: 3rem 1rem;
-  }
+/* Honeypot — invisible to users, AT and keyboard */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
+/* ------------------------------------------------------------
+   Success toast — non-blocking, top-right, auto-dismiss
+   ------------------------------------------------------------ */
+
+.toast-region {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.toast {
+  position: absolute;
+  top: calc(var(--navbar-height) + 1rem);
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: min(22rem, calc(100vw - 3rem));
+  padding: 0.9rem 1rem;
+  background: var(--toast-bg);
+  border: 1px solid var(--toast-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-soft);
+  pointer-events: auto;
+  animation: toast-in var(--duration-base) var(--ease-expo) 1;
+}
+
+.toast-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-title) 15%, transparent);
+  color: var(--color-title);
+}
+
+.toast-icon .contact-svg {
+  width: 16px;
+  height: 16px;
+}
+
+.toast-message {
+  flex: 1;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.toast-close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-smooth),
+    background-color var(--duration-fast) var(--ease-smooth);
+}
+
+.toast-close:hover {
+  color: var(--color-title);
+  background: color-mix(in srgb, var(--color-title) 10%, transparent);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+
+@media (max-width: 992px) {
   .contact-content {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  .contact-info {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-info-title {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 3rem 1rem;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
   .contact-info,
   .contact-form-container {
     padding: 1.5rem;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .submit-btn {
+    align-self: stretch;
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion — final states, no transitions
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-info-item,
+  .contact-info-item:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .form-group label,
+  .form-group:has(.form-input:not(:placeholder-shown)) label,
+  .form-group:has(.form-input:focus) label {
+    transition: none;
+  }
+
+  .form-input,
+  .form-input:focus {
+    transition: none;
+    background-size: 100% var(--input-hairline-h);
+  }
+
+  .error-message {
+    animation: none;
+  }
+
+  .toast {
+    animation: none;
+  }
+
+  .submit-btn,
+  .submit-btn:hover:not(:disabled),
+  .whatsapp-link,
+  .whatsapp-arrow {
+    transform: none;
+    transition: none;
+  }
+
+  .whatsapp-link:hover .whatsapp-arrow {
+    transform: none;
   }
 }
