@@ -5,6 +5,49 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.4.0] - 2026-11-25
+
+### Added
+
+- **Events rediseñado como timeline inmersiva** ("Frecuencia Visual") con
+  línea dorada vertical que se llena progresivamente al hacer scroll
+  (IntersectionObserver sobre cada tarjeta), nodos dorados pulsantes en cada
+  evento y tarjetas alternadas a izquierda/derecha en layout editorial asimétrico
+- **Contadores grandes tipo stage-light**: dígitos `var(--font-mono)` a
+  `clamp(2.5rem, 5vw, 4rem)` con `-webkit-text-stroke` dorado y doble glow;
+  fallback con `@supports` para navegadores sin text-stroke
+- **Badges de estado visual** en eventos (`En espera` / `En curso` /
+  `Finalizado`) con color dinámico vía `--status-color`, dot de estado animado
+  solo para eventos en curso y mensajería `aria-label` contextual del contador
+- **Galería rediseñada como visor full-bleed manual** (sin auto-play): foto
+  principal a ancho de viewport con flechas laterales, captión + indicador
+  `n / total`, disparo del lightbox mediante botón de expansión y navegación
+  por teclado (←/→) cuando el lightbox está cerrado
+- **Film strip tipo tira de película** bajo el visor: miniaturas horizontales
+  con `scroll-snap`, miniatura activa resaltada en oro, scroll automático
+  (`scrollIntoView`) para mantener la miniatura activa visible, y selección
+  manual por click
+- Tokens compartidos en `App.css`: `--gold-line-vertical`,
+  `--timeline-width`, `--timeline-dot-size`, `--timeline-fill-duration`,
+  `--counter-font-size`, `--counter-glow`, `--carousel-height`,
+  `--film-strip-height`, `--film-strip-gap`
+- Estados de foco visibles (`:focus-visible`) en navegación del carrusel,
+  film strip y botón de expansión, preservados también en el lightbox
+
+### Changed
+
+- Events y Gallery dejan de usar grillas de tarjetas uniformes por layouts
+  asimétricos y a sangre (`full-bleed`) con superficies translúcidas
+  (`backdrop-filter`) y hairlines doradas
+- La navegación de la galería ya no depende solo del lightbox: ahora el visor
+  principal es la superficie primaria y el lightbox queda como acción explícita
+  de "ampliar"
+- Ambos contadores (`role="timer"` de eventos, `aria-live` del lightbox) y el
+  diálogo del lightbox (`role="dialog"`, `aria-modal`, focus trap, retorno de
+  foco) se conservan sin regresión de accesibilidad
+
+### Fixed
+
 ## [1.3.0] - 2026-11-22
 
 ### Added
