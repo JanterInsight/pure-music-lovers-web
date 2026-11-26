@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { MusicalEvent, EventStatus, TimeRemaining } from '../../types'
 import { getEventStatus, formatTimeRemaining, buildMapsUrl } from '../../utils/time'
 import { eventsData } from '../../data/events'
@@ -16,9 +16,10 @@ const ZERO_TIME: TimeRemaining = { days: 0, hours: 0, minutes: 0, seconds: 0 }
 interface EventCardProps {
   event: MusicalEvent
   index: number
+  side: 'left' | 'right'
 }
 
-function EventCard({ event, index }: EventCardProps) {
+function EventCard({ event, index, side }: EventCardProps) {
   const [status, setStatus] = useState<EventStatus>(() => getEventStatus(event.start, event.end))
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(() =>
     formatTimeRemaining(status === 'ongoing' ? event.end : event.start),
@@ -43,28 +44,68 @@ function EventCard({ event, index }: EventCardProps) {
 
   if (status === 'hidden') return null
 
+  const counterLabel =
+    status === 'waiting'
+      ? 'Cuenta regresiva para el inicio del evento'
+      : status === 'ongoing'
+        ? 'Tiempo restante del evento'
+        : 'Evento finalizado'
+
   return (
-    <Reveal variant="scale" delay={index * 150} className={`event-card event-status-${status}`}>
-      <h3 className="event-title">{event.title}</h3>
-
-      <div className="event-counter" role="timer" aria-live="polite" aria-atomic="true">
-        <TimeBlock value={timeRemaining.days} label="días" />
-        <span className="time-separator" aria-hidden="true">:</span>
-        <TimeBlock value={timeRemaining.hours} label="horas" />
-        <span className="time-separator" aria-hidden="true">:</span>
-        <TimeBlock value={timeRemaining.minutes} label="minutos" />
-        <span className="time-separator" aria-hidden="true">:</span>
-        <TimeBlock value={timeRemaining.seconds} label="segundos" />
+    <Reveal
+      variant={side === 'left' ? 'right' : 'left'}
+      delay={index * 120}
+      className={`event-card event-side-${side} event-status-${status}`}
+    >
+      {/* Gold timeline node */}
+      <div className="timeline-node" aria-hidden="true">
+        <span className="timeline-node-dot" />
       </div>
 
-      <div className="event-status">
-        <span className="status-indicator"></span>
-        <span className="status-text">{statusLabels[status]}</span>
-      </div>
+      <div className="event-card-inner">
+        <h3 className="event-title">{event.title}</h3>
 
-      <a href={buildMapsUrl(event.mapsQuery)} target="_blank" rel="noopener noreferrer" className="event-location">
-        📍 {event.location}
-      </a>
+        {/* Oversized counter — stage-light mono digits */}
+        <div
+          className="event-counter"
+          role="timer"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-label={counterLabel}
+        >
+          <TimeBlock value={timeRemaining.days} label="días" />
+          <span className="time-separator" aria-hidden="true">
+            :
+          </span>
+          <TimeBlock value={timeRemaining.hours} label="horas" />
+          <span className="time-separator" aria-hidden="true">
+            :
+          </span>
+          <TimeBlock value={timeRemaining.minutes} label="minutos" />
+          <span className="time-separator" aria-hidden="true">
+            :
+          </span>
+          <TimeBlock value={timeRemaining.seconds} label="segundos" />
+        </div>
+
+        {/* Status badge */}
+        <div className="event-status">
+          <span className={`status-badge status-${status}`}>
+            <span className="status-dot" aria-hidden="true" />
+            {statusLabels[status]}
+          </span>
+        </div>
+
+        <a
+          href={buildMapsUrl(event.mapsQuery)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="event-location"
+          aria-label={`Ver ubicación en Google Maps: ${event.location}`}
+        >
+          <span aria-hidden="true">📍</span> {event.location}
+        </a>
+      </div>
     </Reveal>
   )
 }
@@ -85,16 +126,74 @@ function TimeBlock({ value, label }: TimeBlockProps) {
 
 function Events() {
   const activeEvents = eventsData.filter((event) => getEventStatus(event.start, event.end) !== 'hidden')
+  const timelineRef = useRef<HTMLDivElement>(null)
+  const reduceMotion = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  const [fillProgress, setFillProgress] = useState(reduceMotion ? 1 : 0)
 
   if (activeEvents.length === 0) return null
 
+  // Scroll-driven gold line fill — draws the timeline as the user descends
+  useEffect(() => {
+    const timeline = timelineRef.current
+    if (!timeline) return
+
+    // Reduced motion: show the complete rail, skip scroll-driven drawing
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setFillProgress(1)
+      return
+    }
+
+    const updateFill = () => {
+      const rect = timeline.getBoundingClientRect()
+      const viewportAnchor = window.innerHeight * 0.7
+
+      if (rect.top >= viewportAnchor) {
+        setFillProgress(0)
+        return
+      }
+
+      const scrolled = viewportAnchor - rect.top
+      const progress = Math.min(1, Math.max(0, scrolled / rect.height))
+      setFillProgress(progress)
+    }
+
+    updateFill()
+    window.addEventListener('scroll', updateFill, { passive: true })
+    window.addEventListener('resize', updateFill)
+
+    return () => {
+      window.removeEventListener('scroll', updateFill)
+      window.removeEventListener('resize', updateFill)
+    }
+  }, [])
+
   return (
     <section className="events" id="eventos">
+      <div className="stage-glow events-stage-glow" aria-hidden="true" />
       <div className="container">
-        <Reveal as="h2" className="events-title">Próximos Eventos</Reveal>
-        <div className="events-grid">
+        <Reveal as="h2" className="events-title">
+          Próximos Eventos
+        </Reveal>
+
+        <div className="events-timeline" ref={timelineRef} role="list" aria-label="Lista de eventos próximos">
+          {/* Gold timeline rail */}
+          <div className="timeline-rail" aria-hidden="true">
+            <div
+              className="timeline-rail-fill"
+              style={{
+                transform: `scaleY(${fillProgress})`,
+                ...(reduceMotion ? {} : { transition: 'transform 200ms linear' }),
+              }}
+            />
+          </div>
+
           {activeEvents.map((event, index) => (
-            <EventCard key={event.id} event={event} index={index} />
+            <EventCard
+              key={event.id}
+              event={event}
+              index={index}
+              side={index % 2 === 0 ? 'left' : 'right'}
+            />
           ))}
         </div>
       </div>
