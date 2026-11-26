@@ -5,6 +5,60 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.5.0] - 2026-11-25
+
+### Added
+
+- **Formulario de contacto inmersivo** con labels flotantes (`.form-group:has()`
+  sobre `:placeholder-shown` y `:focus`) y **hairline dorada que crece de
+  izquierda a derecha** al enfocar un campo (`background-size` sobre
+  `--input-hairline-h`, interpolar con `--ease-expo`)
+- **Toast de éxito no bloqueante** arriba a la derecha: región `role="status"` +
+  `aria-live="polite"`, auto-descarte a los 4s, cierre manual con botón
+  etiquetado, icono SVG dorado de confirmación y foco visible
+- **Iconos SVG decorativos** (`aria-hidden`, `focusable="false"`, coloreados por
+  `currentColor`) reemplazando los emojis de email, teléfono, ubicación y
+  WhatsApp en la información de contacto
+- **Tarjetas de contacto translúcidas** con borde dorado tenue, glow de foco
+  (`--card-glow-hover`) y lista fija (`sticky`) sobre la columna del formulario
+  en viewports anchos
+- **Enlaces a grupos de WhatsApp como pills** con flecha animada al hover
+- **Sobre Nosotros rediseñado** con letra capital editorial (`::first-letter`
+  dorada), pull-quote girando `--pull-quote-rotate`, línea dorada divisoria
+  animada (`.hairline`) y **timeline de hitos** con línea vertical dorada que se
+  llena al hacer scroll, nodos pulsantes y tarjetas alternadas (mismo lenguaje
+  visual que la timeline de Events)
+- **Tres tarjetas de valores** (Pasión Musical, Comunidad Inclusiva,
+  Experiencias Únicas) con icono SVG dorado y glow al hover
+- **CTA de cierre** en Sobre Nosotros con enlace a la sección de contacto
+- **Honeypot anti-spam** oculto (`aria-hidden`, `tabIndex={-1}`, `autocomplete="off"`,
+  fuera del viewport) que descarta envíos de bots de forma silenciosa
+- **Corazón SVG dorado en el footer** con pulso sutil (`heart-pulse-gold`,
+  `--pulse-gold-duration`) y hairline dorada animada en el borde superior
+- Nav de enlaces rápidos del footer envuelta en `<nav aria-label="Enlaces rápidos">`
+- Tokens compartidos en `App.css`: `--input-hairline-h`, `--input-focus-glow`,
+  `--card-glow-hover`, `--timeline-about-width`, `--pull-quote-rotate`,
+  `--footer-hairline-h`, `--toast-bg`, `--toast-border`, `--pulse-gold-duration`
+
+### Changed
+
+- **Validación en vivo del formulario**: los errores se confirman al salir del
+  campo (`onBlur`) en lugar de solo al enviar; al enviar con errores el foco se
+  mueve al primer campo inválido
+- Inputs del formulario con `autoComplete` semántico (`name`, `email`) e
+  `id`/`htmlFor` permanentes para que los labels flotantes conserven la
+  asociación accesible
+- `.pull-quote` de `App.css` ahora rota con `var(--pull-quote-rotate, -3deg)`
+- Texto del teléfono de contacto normalizado ("DJ MonarC - Jose" →
+  "DJ MonarC — Jose")
+- El `alert()` bloqueante de éxito del formulario fue reemplazado por el toast
+  accesible (sin bloquear la interacción ni el lector de pantalla)
+- Las clases del timeline de Sobre Nosotros se nombraron con prefijo propio
+  (`about-rail`, `milestone-node`) para no colisionar con `.timeline-rail` de
+  Events en el CSS global
+
+### Fixed
+
 ## [1.4.0] - 2026-11-25
 
 ### Added
