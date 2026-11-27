@@ -143,10 +143,8 @@
   box-shadow: var(--gold-glow-soft);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .milestone-node-dot {
-    animation: milestone-node-pulse 3s ease-in-out infinite;
-  }
+.milestone-node-dot {
+  animation: milestone-node-pulse 3s ease-in-out infinite;
 }
 
 @keyframes milestone-node-pulse {
@@ -371,43 +369,5 @@
 
   .about-cta {
     margin-top: 5rem;
-  }
-}
-
-/* ---------- Reduced motion: rail full, static nodes, final states ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-  .about-rail-fill {
-    transform: scaleY(1);
-    transition: none;
-  }
-
-  .about .pull-quote,
-  .about .pull-quote.is-revealed {
-    transform: none;
-  }
-
-  .milestone-node-dot,
-  .about-cta-link .value-svg {
-    animation: none;
-    transition: none;
-  }
-
-  .milestone-card,
-  .value-card-inner,
-  .about-cta-link,
-  .milestone-card:hover,
-  .value-card-inner:hover,
-  .about-cta-link:hover {
-    transition: none;
-    transform: none;
-  }
-
-  .about-cta-link:hover .value-svg {
-    transform: none;
-  }
-
-  .about-intro p::first-letter {
-    text-shadow: none;
   }
 }

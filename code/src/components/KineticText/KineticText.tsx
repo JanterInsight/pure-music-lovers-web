@@ -45,15 +45,9 @@ function KineticText({
     const element = containerRef.current
     if (!element) return
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     let raf = requestAnimationFrame(() => {
       element.classList.add('is-revealed')
     })
-
-    if (reduceMotion) {
-      element.classList.add('is-revealed')
-    }
 
     return () => cancelAnimationFrame(raf)
   }, [])

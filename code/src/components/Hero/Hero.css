@@ -182,14 +182,3 @@
     width: 140%;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: none;
-  }
-
-  .stage-glow {
-    transform: translateX(-50%);
-    will-change: auto;
-  }
-}

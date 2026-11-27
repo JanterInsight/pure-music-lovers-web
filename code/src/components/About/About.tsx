@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import Reveal from '../Reveal/Reveal'
-import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
+import { useScrollProgress } from '../../hooks/useScrollManager'
 import './About.css'
 
 interface Milestone {
@@ -64,7 +64,7 @@ function About() {
 
   // Scroll-driven gold line fill — draws the story as the user descends.
   // Uses shared scroll manager to avoid layout thrash.
-  const fillProgress = useReducedMotionScrollProgress(timelineRef, {
+  const fillProgress = useScrollProgress(timelineRef, {
     viewportAnchor: 0.75,
     startAt: 'top',
     endAt: 'bottom',

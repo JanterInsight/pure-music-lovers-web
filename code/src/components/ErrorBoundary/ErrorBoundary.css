@@ -72,9 +72,3 @@
   outline: 2px solid var(--color-title);
   outline-offset: 4px;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .error-boundary-btn {
-    transition: none;
-  }
-}

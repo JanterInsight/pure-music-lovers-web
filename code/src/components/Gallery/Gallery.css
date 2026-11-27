@@ -295,29 +295,6 @@
   }
 }
 
-/* ---------- Reduced motion: instant slide swap ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-  .carousel-slide {
-    transition: none;
-    transform: none;
-  }
-
-  .carousel-slide.is-active {
-    transform: none;
-  }
-
-  .gallery-stage-glow {
-    opacity: 0.25;
-  }
-
-  .carousel-nav,
-  .film-thumb,
-  .carousel-expand {
-    transition: none;
-  }
-}
-
 /* ============================================================
    Lightbox — accessible dialog (preserved)
    ============================================================ */
@@ -342,12 +319,6 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lightbox {
-    animation: none;
   }
 }
 

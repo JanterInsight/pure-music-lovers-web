@@ -3,7 +3,7 @@ import type { MusicalEvent, EventStatus, TimeRemaining } from '../../types'
 import { getEventStatus, formatTimeRemaining, buildMapsUrl } from '../../utils/time'
 import { eventsData } from '../../data/events'
 import Reveal from '../Reveal/Reveal'
-import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
+import { useScrollProgress } from '../../hooks/useScrollManager'
 import './Events.css'
 
 const statusLabels: Record<Exclude<EventStatus, 'hidden'>, string> = {
@@ -108,7 +108,7 @@ function Events() {
 
   // Scroll-driven gold line fill — draws the timeline as the user descends.
   // Uses shared scroll manager to avoid layout thrash.
-  const fillProgress = useReducedMotionScrollProgress(timelineRef, {
+  const fillProgress = useScrollProgress(timelineRef, {
     viewportAnchor: 0.7,
     startAt: 'top',
     endAt: 'bottom',

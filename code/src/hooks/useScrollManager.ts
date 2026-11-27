@@ -105,20 +105,3 @@ export function useScrollProgress(
 
   return progress
 }
-
-/**
- * Hook for reduced-motion aware scroll progress.
- * Returns 1 immediately if prefers-reduced-motion.
- */
-export function useReducedMotionScrollProgress(
-  elementRef: React.RefObject<HTMLElement | null>,
-  options?: ScrollSubscriber['options']
-): number {
-  const [reduceMotion] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-  )
-
-  const progress = useScrollProgress(elementRef, options)
-
-  return reduceMotion ? 1 : progress
-}

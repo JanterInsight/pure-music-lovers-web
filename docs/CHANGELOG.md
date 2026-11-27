@@ -5,6 +5,31 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.0] - 2026-11-27
+
+### Removed
+
+- **Componente `ReducedMotionNotice` eliminado**: ya no se muestra el modal de
+  advertencia «Animaciones desactivadas» al detectar la preferencia de
+  reducción de movimiento del sistema
+- **Todo el soporte de `prefers-reduced-motion` eliminado**:
+  - Bloques `@media (prefers-reduced-motion: reduce)` removidos de
+    `App.css`, `Hero.css`, `About.css`, `Events.css`, `Gallery.css`,
+    `Contact.css`, `Footer.css`, `ErrorBoundary.css`, `Reveal.css` y
+    `KineticText.css` (ya no se desactivan animaciones ni transiciones)
+  - Bloques `@media (prefers-reduced-motion: no-preference)` de `About.css`,
+    `Events.css` y `Footer.css` desempaquetados: los pulsos de nodos de las
+    timelines, del indicador de estado y del corazón del footer ahora corren
+    siempre
+  - Hook `useReducedMotionScrollProgress` eliminado; los componentes
+    `Hero`, `Events` y `About` usan ahora `useScrollProgress` directamente
+  - Check de `prefers-reduced-motion` eliminado de `KineticText`
+
+### Changed
+
+- **Las animaciones se cargan siempre**, independientemente de la configuración
+  de accesibilidad del dispositivo (móvil, tablet o escritorio)
+
 ## [1.5.0] - 2026-11-25
 
 ### Added

@@ -22,14 +22,3 @@
   opacity: 1;
   transform: none;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}

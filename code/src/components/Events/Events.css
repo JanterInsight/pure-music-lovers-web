@@ -95,10 +95,8 @@
   box-shadow: var(--gold-glow-soft);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .timeline-node-dot {
-    animation: node-pulse 3s ease-in-out infinite;
-  }
+.timeline-node-dot {
+  animation: node-pulse 3s ease-in-out infinite;
 }
 
 @keyframes node-pulse {
@@ -250,10 +248,8 @@
   background: var(--status-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .status-ongoing .status-dot {
-    animation: pulse 2s ease-in-out infinite;
-  }
+.status-ongoing .status-dot {
+  animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -362,27 +358,5 @@
 
   .event-card-inner {
     padding: 2.5rem 2rem;
-  }
-}
-
-/* ---------- Reduced motion: rail already full, static nodes ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-  .timeline-rail-fill {
-    transform: scaleY(1);
-    transition: none;
-  }
-
-  .timeline-node-dot,
-  .status-ongoing .status-dot {
-    animation: none;
-  }
-
-  .event-card-inner:hover {
-    transform: none;
-  }
-
-  .events-stage-glow {
-    opacity: 0.3;
   }
 }

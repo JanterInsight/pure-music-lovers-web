@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import KineticText from '../KineticText/KineticText'
 import Reveal from '../Reveal/Reveal'
-import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
+import { useScrollProgress } from '../../hooks/useScrollManager'
 import './Hero.css'
 
 function Hero() {
@@ -10,7 +10,7 @@ function Hero() {
 
   // Subtle parallax: the ambient stage-glow drifts slower than the copy.
   // Uses shared scroll manager to avoid layout thrash.
-  const scrollProgress = useReducedMotionScrollProgress(heroRef, {
+  const scrollProgress = useScrollProgress(heroRef, {
     viewportAnchor: 0,
     startAt: 'top',
     endAt: 'bottom',

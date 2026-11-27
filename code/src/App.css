@@ -166,7 +166,7 @@ section {
 
 /* ============================================================
    Motion language — experimental/artsy system
-   Opt-in utilities only; collapsed under reduced-motion.
+   Opt-in utilities only; animations always run.
    Kinetic headline lives in components/KineticText/KineticText.css
    ============================================================ */
 
@@ -200,25 +200,6 @@ section {
   line-height: 1.3;
   transform: rotate(var(--pull-quote-rotate, -3deg));
   text-wrap: balance;
-}
-
-/* Reduced motion: preserve final state and hierarchy, drop transitions */
-@media (prefers-reduced-motion: reduce) {
-  .hairline {
-    transform: scaleX(1);
-    transition: none;
-  }
-
-  .pull-quote {
-    transform: none;
-  }
-
-  .stage-glow {
-    background: radial-gradient(ellipse 90% 60% at 50% -10%,
-        color-mix(in srgb, var(--color-title) 6%, transparent) 0%,
-        transparent 65%);
-    will-change: auto;
-  }
 }
 
 /* ============================================================

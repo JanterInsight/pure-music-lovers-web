@@ -132,29 +132,24 @@
   font-weight: 600;
 }
 
-/* Gold heart — subtle pulse, static under reduced motion */
+/* Gold heart — subtle pulse */
 .footer-heart {
   width: 16px;
   height: 16px;
   display: inline-block;
   vertical-align: -2px;
   color: var(--color-title);
+  animation: heart-pulse-gold var(--pulse-gold-duration) ease-in-out infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .footer-heart {
-    animation: heart-pulse-gold var(--pulse-gold-duration) ease-in-out infinite;
+@keyframes heart-pulse-gold {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 color-mix(in srgb, var(--color-title) 0%, transparent));
   }
-
-  @keyframes heart-pulse-gold {
-    0%, 100% {
-      transform: scale(1);
-      filter: drop-shadow(0 0 0 color-mix(in srgb, var(--color-title) 0%, transparent));
-    }
-    50% {
-      transform: scale(1.15);
-      filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-title) 70%, transparent));
-    }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-title) 70%, transparent));
   }
 }
 
@@ -187,15 +182,5 @@
 
   .footer-logo {
     font-size: 2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-heart {
-    animation: none;
-  }
-
-  .footer-links a::after {
-    transition: none;
   }
 }

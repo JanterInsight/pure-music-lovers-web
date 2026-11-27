@@ -6,14 +6,12 @@ import Events from './components/Events/Events'
 import Gallery from './components/Gallery/Gallery'
 import Contact from './components/Contact/Contact'
 import Footer from './components/Footer/Footer'
-import ReducedMotionNotice from './components/ReducedMotionNotice/ReducedMotionNotice'
 
 function App() {
   const mainRef = useRef<HTMLElement>(null)
 
   return (
     <div className="app">
-      <ReducedMotionNotice />
       <Navbar mainRef={mainRef} />
       <main ref={mainRef}>
         <Hero />
