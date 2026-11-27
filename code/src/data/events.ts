@@ -41,4 +41,28 @@ export const eventsData: MusicalEvent[] = [
     location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
     mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
   },
+  {
+    id: 6,
+    title: 'Música Electrónica & Synthwave',
+    start: '2027-01-20T21:00:00',
+    end: '2027-01-21T00:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
+  {
+    id: 7,
+    title: 'Fusión Latinoamericana',
+    start: '2027-03-18T20:00:00',
+    end: '2027-03-18T23:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
+  {
+    id: 8,
+    title: 'Tributo a los Clásicos del Rock',
+    start: '2027-05-13T20:00:00',
+    end: '2027-05-13T23:00:00',
+    location: 'Cuba, Holguín, Banes, Radio Banes, Calle: Máximo Gómez, Sala Superior',
+    mapsQuery: 'Cuba, Holguín, Banes, Radio Banes, Calle Máximo Gómez',
+  },
 ]

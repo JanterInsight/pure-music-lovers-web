@@ -5,6 +5,17 @@ Todos los cambios notables de este proyecto se documentan en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.7.0] - 2026-11-27
+
+### Added
+
+- **Tres eventos ficticios** en la timeline de Eventos:
+  - **Música Electrónica & Synthwave** — 20 de enero de 2027, 21:00
+  - **Fusión Latinoamericana** — 18 de marzo de 2027, 20:00
+  - **Tributo a los Clásicos del Rock** — 13 de mayo de 2027, 20:00
+  - Todos en Radio Banes (Cuba, Holguín, Banes), con contador regresivo y
+    badge de estado «En espera» gestionados por la lógica existente de Eventos
+
 ## [1.6.0] - 2026-11-27
 
 ### Removed

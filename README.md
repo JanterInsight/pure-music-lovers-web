@@ -4,7 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/🌐-Live%20Demo-FFD700?style=for-the-badge)](https://janterinsight.github.io/pure-music-lovers-web/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/JanterInsight/pure-music-lovers-web)
-[![Version](https://img.shields.io/badge/version-1.6.0-blue?style=for-the-badge)](https://github.com/JanterInsight/pure-music-lovers-web)
+[![Version](https://img.shields.io/badge/version-1.7.0-blue?style=for-the-badge)](https://github.com/JanterInsight/pure-music-lovers-web)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 
 Sitio web oficial de **Puros Melómanos** - Tu comunidad de amantes de la música.
@@ -285,5 +285,5 @@ Hecho con ❤️ para nuestra comunidad de melómanos.
 
 ---
 
-**Versión del Proyecto**: 1.6.0
+**Versión del Proyecto**: 1.7.0
 **Última Actualización**: 2026-11-27
