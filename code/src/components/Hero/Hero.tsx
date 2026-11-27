@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import KineticText from '../KineticText/KineticText'
 import Reveal from '../Reveal/Reveal'
+import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
 import './Hero.css'
 
 function Hero() {
@@ -8,40 +9,22 @@ function Hero() {
   const glowRef = useRef<HTMLDivElement | null>(null)
 
   // Subtle parallax: the ambient stage-glow drifts slower than the copy.
+  // Uses shared scroll manager to avoid layout thrash.
+  const scrollProgress = useReducedMotionScrollProgress(heroRef, {
+    viewportAnchor: 0,
+    startAt: 'top',
+    endAt: 'bottom',
+  })
+
   useEffect(() => {
-    const hero = heroRef.current
     const glow = glowRef.current
-    if (!hero || !glow) return
+    if (!glow) return
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) return
-
-    let raf: number | null = null
-
-    const update = () => {
-      raf = null
-      const rect = hero.getBoundingClientRect()
-      // 0 when hero top is at viewport top, grows as it scrolls away
-      const progress = Math.min(1, Math.max(0, -rect.top / rect.height))
-      glow.style.transform = `translateY(${progress * 60}px) scale(${1 + progress * 0.15})`
-      glow.style.opacity = String(1 - progress * 0.7)
-      hero.style.setProperty('--scroll', progress.toFixed(3))
-    }
-
-    const onScroll = () => {
-      if (raf === null) raf = requestAnimationFrame(update)
-    }
-
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll, { passive: true })
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (raf !== null) cancelAnimationFrame(raf)
-    }
-  }, [])
+    // scrollProgress is 0 at hero top, 1 when hero bottom passes viewport top
+    glow.style.transform = `translateY(${scrollProgress * 60}px) scale(${1 + scrollProgress * 0.15})`
+    glow.style.opacity = String(1 - scrollProgress * 0.7)
+    heroRef.current?.style.setProperty('--scroll', scrollProgress.toFixed(3))
+  }, [scrollProgress])
 
   return (
     <section className="hero" id="inicio" ref={heroRef}>

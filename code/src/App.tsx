@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import About from './components/About/About'
@@ -8,11 +9,13 @@ import Footer from './components/Footer/Footer'
 import ReducedMotionNotice from './components/ReducedMotionNotice/ReducedMotionNotice'
 
 function App() {
+  const mainRef = useRef<HTMLElement>(null)
+
   return (
     <div className="app">
       <ReducedMotionNotice />
-      <Navbar />
-      <main>
+      <Navbar mainRef={mainRef} />
+      <main ref={mainRef}>
         <Hero />
         <About />
         <Events />

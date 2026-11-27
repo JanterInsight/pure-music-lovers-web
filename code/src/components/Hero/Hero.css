@@ -15,7 +15,7 @@
   position: absolute;
   top: -20%;
   left: 50%;
-  width: 140%;
+  width: 180%;
   height: 90%;
   transform: translateX(-50%) translateY(0) scale(1);
   background: var(--gold-ambient);
@@ -105,9 +105,13 @@
 
 .hero-buttons {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: 1.25rem;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 320px;
 }
 
 .btn {
@@ -115,6 +119,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   padding: 1.05rem 2.5rem;
   border-radius: var(--radius-lg);
   font-size: 1rem;
@@ -143,22 +148,10 @@
   box-shadow: var(--gold-glow-soft);
 }
 
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 70px color-mix(in srgb, var(--color-title) 55%, transparent);
-}
-
 .btn-secondary {
   background-color: transparent;
   color: var(--color-title);
   border-color: var(--color-border);
-}
-
-.btn-secondary:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-title);
-  color: var(--color-title);
-  box-shadow: 0 0 40px color-mix(in srgb, var(--color-title) 30%, transparent);
 }
 
 .btn:focus-visible {
@@ -166,26 +159,27 @@
   outline-offset: 4px;
 }
 
-@media (max-width: 768px) {
+/* ≥ 768px — tablet+: horizontal buttons, wider eyebrow rules, tighter glow */
+@media (min-width: 768px) {
   .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 320px;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    max-width: none;
   }
 
   .btn {
-    width: 100%;
+    width: auto;
   }
 
   .hero-eyebrow::before,
   .hero-eyebrow::after {
-    width: 1.5rem;
-    margin: 0 0.5rem;
+    width: 2.5rem;
+    margin: 0 0.75rem;
   }
 
   .stage-glow {
-    width: 180%;
+    width: 140%;
   }
 }
 

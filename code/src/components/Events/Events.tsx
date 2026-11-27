@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import type { MusicalEvent, EventStatus, TimeRemaining } from '../../types'
 import { getEventStatus, formatTimeRemaining, buildMapsUrl } from '../../utils/time'
 import { eventsData } from '../../data/events'
 import Reveal from '../Reveal/Reveal'
+import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
 import './Events.css'
 
 const statusLabels: Record<Exclude<EventStatus, 'hidden'>, string> = {
@@ -11,37 +12,15 @@ const statusLabels: Record<Exclude<EventStatus, 'hidden'>, string> = {
   finished: 'Finalizado',
 }
 
-const ZERO_TIME: TimeRemaining = { days: 0, hours: 0, minutes: 0, seconds: 0 }
-
 interface EventCardProps {
   event: MusicalEvent
   index: number
   side: 'left' | 'right'
+  status: EventStatus
+  timeRemaining: TimeRemaining
 }
 
-function EventCard({ event, index, side }: EventCardProps) {
-  const [status, setStatus] = useState<EventStatus>(() => getEventStatus(event.start, event.end))
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(() =>
-    formatTimeRemaining(status === 'ongoing' ? event.end : event.start),
-  )
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const newStatus = getEventStatus(event.start, event.end)
-      setStatus(newStatus)
-
-      if (newStatus === 'waiting') {
-        setTimeRemaining(formatTimeRemaining(event.start))
-      } else if (newStatus === 'ongoing') {
-        setTimeRemaining(formatTimeRemaining(event.end))
-      } else if (newStatus === 'finished') {
-        setTimeRemaining(ZERO_TIME)
-      }
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [event.start, event.end])
-
+function EventCard({ event, index, side, status, timeRemaining }: EventCardProps) {
   if (status === 'hidden') return null
 
   const counterLabel =
@@ -117,7 +96,7 @@ interface TimeBlockProps {
 
 function TimeBlock({ value, label }: TimeBlockProps) {
   return (
-    <div className="time-block">
+    <div className="time-block" aria-live="polite" aria-atomic="true">
       <span className="time-value">{String(value).padStart(2, '0')}</span>
       <span className="time-label">{label}</span>
     </div>
@@ -125,47 +104,36 @@ function TimeBlock({ value, label }: TimeBlockProps) {
 }
 
 function Events() {
-  const activeEvents = eventsData.filter((event) => getEventStatus(event.start, event.end) !== 'hidden')
   const timelineRef = useRef<HTMLDivElement>(null)
-  const reduceMotion = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-  const [fillProgress, setFillProgress] = useState(reduceMotion ? 1 : 0)
+
+  // Scroll-driven gold line fill — draws the timeline as the user descends.
+  // Uses shared scroll manager to avoid layout thrash.
+  const fillProgress = useReducedMotionScrollProgress(timelineRef, {
+    viewportAnchor: 0.7,
+    startAt: 'top',
+    endAt: 'bottom',
+  })
+
+  // Shared timer: compute all statuses once per second, not per card.
+  const [now, setNow] = useState(Date.now())
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const activeEvents = useMemo(() => {
+    return eventsData
+      .map((event) => ({
+        ...event,
+        status: getEventStatus(event.start, event.end),
+        timeRemaining: formatTimeRemaining(
+          getEventStatus(event.start, event.end) === 'ongoing' ? event.end : event.start,
+        ),
+      }))
+      .filter((e) => e.status !== 'hidden')
+  }, [now])
 
   if (activeEvents.length === 0) return null
-
-  // Scroll-driven gold line fill — draws the timeline as the user descends
-  useEffect(() => {
-    const timeline = timelineRef.current
-    if (!timeline) return
-
-    // Reduced motion: show the complete rail, skip scroll-driven drawing
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      setFillProgress(1)
-      return
-    }
-
-    const updateFill = () => {
-      const rect = timeline.getBoundingClientRect()
-      const viewportAnchor = window.innerHeight * 0.7
-
-      if (rect.top >= viewportAnchor) {
-        setFillProgress(0)
-        return
-      }
-
-      const scrolled = viewportAnchor - rect.top
-      const progress = Math.min(1, Math.max(0, scrolled / rect.height))
-      setFillProgress(progress)
-    }
-
-    updateFill()
-    window.addEventListener('scroll', updateFill, { passive: true })
-    window.addEventListener('resize', updateFill)
-
-    return () => {
-      window.removeEventListener('scroll', updateFill)
-      window.removeEventListener('resize', updateFill)
-    }
-  }, [])
 
   return (
     <section className="events" id="eventos">
@@ -182,7 +150,7 @@ function Events() {
               className="timeline-rail-fill"
               style={{
                 transform: `scaleY(${fillProgress})`,
-                ...(reduceMotion ? {} : { transition: 'transform 200ms linear' }),
+                transition: 'transform 200ms linear',
               }}
             />
           </div>
@@ -193,6 +161,8 @@ function Events() {
               event={event}
               index={index}
               side={index % 2 === 0 ? 'left' : 'right'}
+              status={event.status}
+              timeRemaining={event.timeRemaining}
             />
           ))}
         </div>

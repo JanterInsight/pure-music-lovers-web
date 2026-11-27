@@ -4,7 +4,7 @@
   --color-bg-primary: #0A0A0A;
   --color-bg-secondary: #1A1A1A;
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #F5F0E8;
+  --color-text-secondary: #FDF8F0;
   --color-waiting: #f39c12;
   --color-ongoing: #27ae60;
   --color-finished: #e74c3c;
@@ -90,6 +90,10 @@ body {
   color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
 }
 
 #root {
@@ -124,19 +128,39 @@ img {
   border: 0;
 }
 
+/* ============================================================
+   RESPONSIVE — MOBILE-FIRST (base = mobile, min-width layers up)
+   ============================================================ */
+
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 section {
-  padding: 4rem 1.5rem;
+  padding: 3rem 1rem;
 }
 
-@media (max-width: 768px) {
+/* ≥ 480px — small mobile: a touch more breathing room */
+@media (min-width: 480px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
   section {
-    padding: 3rem 1rem;
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+/* ≥ 768px — tablet: desktop-grade rhythm */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  section {
+    padding: 4rem 1.5rem;
   }
 }
 
@@ -193,5 +217,224 @@ section {
     background: radial-gradient(ellipse 90% 60% at 50% -10%,
         color-mix(in srgb, var(--color-title) 6%, transparent) 0%,
         transparent 65%);
+    will-change: auto;
+  }
+}
+
+/* ============================================================
+   Input Method Adaptation — pointer & hover media queries
+   Critical: Don't rely on hover for functionality on touch devices
+   ============================================================ */
+
+/* Coarse pointer (touch, stylus) — larger touch targets, no hover-dependent UI */
+@media (pointer: coarse) {
+  /* Buttons & interactive elements — larger tap areas */
+  .btn,
+  .navbar-toggle,
+  .carousel-nav,
+  .film-thumb,
+  .lightbox-nav,
+  .submit-btn,
+  .whatsapp-link,
+  .contact-info-item,
+  .milestone-card,
+  .value-card-inner,
+  .event-card-inner {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Form inputs — taller for easier tapping */
+  .form-input {
+    min-height: 52px;
+    padding: 1.75rem 0.95rem 0.75rem;
+  }
+
+  /* Carousel nav — larger hit area */
+  .carousel-nav {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Lightbox nav — larger hit area */
+  .lightbox-nav {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Disable hover-only transformations on touch */
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .event-card-inner:hover,
+  .milestone-card:hover,
+  .value-card-inner:hover,
+  .contact-info-item:hover,
+  .film-thumb:hover,
+  .carousel-nav:hover,
+  .lightbox-nav:hover,
+  .submit-btn:hover:not(:disabled),
+  .whatsapp-link:hover,
+  .about-cta-link:hover,
+  .footer-links a:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Fine pointer (mouse, trackpad) — can use hover for progressive disclosure */
+@media (pointer: fine) {
+  /* Default sizes are fine for mouse */
+  .btn,
+  .navbar-toggle,
+  .carousel-nav,
+  .film-thumb,
+  .lightbox-nav,
+  .submit-btn,
+  .whatsapp-link {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Device supports hover — enable hover effects */
+@media (hover: hover) {
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 70px color-mix(in srgb, var(--color-title) 55%, transparent);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-title);
+    color: var(--color-title);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--color-title) 30%, transparent);
+  }
+
+  .event-card-inner:hover {
+    border-color: var(--color-title);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+
+  .milestone-card:hover {
+    border-color: var(--color-title);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+
+  .value-card-inner:hover {
+    border-color: var(--color-title);
+    box-shadow: var(--card-glow-hover);
+    transform: translateY(-4px);
+  }
+
+  .contact-info-item:hover {
+    border-color: var(--color-border);
+    box-shadow: var(--card-glow-hover);
+    transform: translateY(-2px);
+  }
+
+  .film-thumb:hover {
+    opacity: 0.85;
+    filter: grayscale(0);
+    border-color: color-mix(in srgb, var(--color-title) 60%, transparent);
+  }
+
+  .carousel-nav:hover,
+  .carousel-nav:focus-visible {
+    background: var(--color-title);
+    border-color: var(--color-title);
+    color: var(--color-bg-primary);
+    box-shadow: var(--shadow-glow-strong);
+  }
+
+  .lightbox-nav:hover {
+    background: var(--color-title);
+    color: var(--color-bg-primary);
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background-color: transparent;
+    color: var(--color-title);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-link:hover {
+    border-color: var(--color-title);
+    color: var(--color-title);
+    background: color-mix(in srgb, var(--color-title) 8%, transparent);
+  }
+
+  .about-cta-link:hover {
+    background-color: var(--color-title);
+    color: var(--color-bg-primary);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .footer-links a:hover,
+  .footer-links a:focus-visible {
+    color: var(--color-title);
+  }
+
+  .footer-links a:hover::after,
+  .footer-links a:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-menu a:not(.navbar-contact-btn):hover::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-menu a:hover {
+    color: var(--color-title);
+  }
+
+  .navbar-contact-btn:hover {
+    background-color: var(--color-title);
+    color: var(--color-bg-primary) !important;
+  }
+}
+
+/* Device does NOT support hover (touch) — use active/tap states instead */
+@media (hover: none) {
+  /* Active states for touch feedback */
+  .btn:active,
+  .event-card-inner:active,
+  .milestone-card:active,
+  .value-card-inner:active,
+  .contact-info-item:active,
+  .film-thumb:active,
+  .submit-btn:active:not(:disabled),
+  .whatsapp-link:active,
+  .about-cta-link:active {
+    transform: scale(0.98);
+    transition: transform 50ms ease-out;
+  }
+
+  .btn-primary:active {
+    background-color: color-mix(in srgb, var(--color-title) 85%, var(--color-bg-primary));
+  }
+
+  .btn-secondary:active {
+    border-color: var(--color-title);
+    background: color-mix(in srgb, var(--color-title) 15%, transparent);
+  }
+
+  /* Ensure no hover-only styles apply */
+  .event-card-inner:hover,
+  .milestone-card:hover,
+  .value-card-inner:hover,
+  .contact-info-item:hover,
+  .film-thumb:hover,
+  .submit-btn:hover:not(:disabled),
+  .whatsapp-link:hover,
+  .about-cta-link:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: inherit;
+    background-color: inherit;
+    color: inherit;
   }
 }

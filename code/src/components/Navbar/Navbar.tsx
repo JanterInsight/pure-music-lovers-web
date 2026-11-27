@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import type { RefObject } from 'react'
 import './Navbar.css'
 
 const base = import.meta.env.BASE_URL
 
-function Navbar() {
+interface NavbarProps {
+  mainRef: RefObject<HTMLElement | null>
+}
+
+function Navbar({ mainRef }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLUListElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -18,6 +23,11 @@ function Navbar() {
 
     const menu = menuRef.current
     if (!menu) return
+
+    // Mark main as inert for screen readers when menu is open
+    if (mainRef.current) {
+      mainRef.current.setAttribute('inert', '')
+    }
 
     const focusableElements = menu.querySelectorAll<HTMLElement>('a[href], button')
     const firstFocusable = focusableElements[0]
@@ -52,6 +62,9 @@ function Navbar() {
 
     return () => {
       menu.removeEventListener('keydown', handleKeyDown)
+      if (mainRef.current) {
+        mainRef.current.removeAttribute('inert')
+      }
     }
   }, [menuOpen])
 

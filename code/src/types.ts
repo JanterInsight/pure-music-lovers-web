@@ -19,6 +19,7 @@ export interface MusicalEvent {
 export interface GalleryImage {
   src: string
   alt: string
+  srcName?: string
 }
 
 export interface ContactFormData {

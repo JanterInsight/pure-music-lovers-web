@@ -1,6 +1,6 @@
 .contact {
   background-color: var(--color-bg-secondary);
-  padding: 5rem 1.5rem;
+  padding: 3rem 1rem;
   position: relative;
   overflow: hidden;
 }
@@ -25,8 +25,8 @@
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -34,15 +34,14 @@
 }
 
 /* ------------------------------------------------------------
-   Contact info — translucent cards, sticky on desktop
+   Contact info — static grid on mobile, sticky on desktop
    ------------------------------------------------------------ */
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.25rem;
-  position: sticky;
-  top: calc(var(--navbar-height) + 1.5rem);
+  position: static;
 }
 
 .contact-info-title {
@@ -63,12 +62,6 @@
     border-color var(--duration-fast) var(--ease-smooth),
     box-shadow var(--duration-fast) var(--ease-smooth),
     transform var(--duration-fast) var(--ease-smooth);
-}
-
-.contact-info-item:hover {
-  border-color: var(--color-border);
-  box-shadow: var(--card-glow-hover);
-  transform: translateY(-2px);
 }
 
 .contact-icon {
@@ -105,10 +98,6 @@
   transition: color var(--duration-fast) var(--ease-smooth);
 }
 
-.contact-info-body a:hover {
-  color: var(--color-title);
-}
-
 .whatsapp-group-list {
   display: flex;
   flex-wrap: wrap;
@@ -132,20 +121,10 @@
     background-color var(--duration-fast) var(--ease-smooth);
 }
 
-.whatsapp-link:hover {
-  border-color: var(--color-title);
-  color: var(--color-title);
-  background: color-mix(in srgb, var(--color-title) 8%, transparent);
-}
-
 .whatsapp-arrow {
   width: 16px;
   height: 16px;
   transition: transform var(--duration-fast) var(--ease-expo);
-}
-
-.whatsapp-link:hover .whatsapp-arrow {
-  transform: translateX(3px);
 }
 
 /* ------------------------------------------------------------
@@ -156,7 +135,7 @@
   background: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
   border-radius: var(--radius-md);
-  padding: 2.25rem 2rem;
+  padding: 1.5rem 1.25rem;
 }
 
 .contact-form-title {
@@ -191,12 +170,28 @@
   opacity: 0.75;
 }
 
-/* Float the label when the field has content or focus */
+/* Float the label when the field has content OR has focus.
+   Primary mechanism: deterministic JS classes (.is-filled / .is-focused),
+   which behave identically for every input type (text, email, textarea).
+   :has() rules stay as progressive enhancement — they cover SSR/hydration
+   gaps and browsers where JS state sync lags by a frame. */
+.form-group.is-filled label,
+.form-group.is-focused label,
 .form-group:has(.form-input:not(:placeholder-shown)) label,
 .form-group:has(.form-input:focus) label {
   transform: translateY(-0.6rem) scale(0.78);
   color: var(--color-title);
   opacity: 1;
+}
+
+/* Fallback for browsers without :has() support (e.g. Safari <15.4) */
+@supports not selector(:has(*)) {
+  /* Focus state — :focus-within is universally supported */
+  .form-group:focus-within label {
+    transform: translateY(-0.6rem) scale(0.78);
+    color: var(--color-title);
+    opacity: 1;
+  }
 }
 
 .form-input {
@@ -217,6 +212,19 @@
   background-position: 0 100%;
   background-repeat: no-repeat;
   transition: background-size var(--duration-fast) var(--ease-expo);
+}
+
+/* Hide native placeholder text while the floating label sits in the field
+   (empty + unfocused) — the label is the visual hint.
+   On focus the label has already floated up, so the placeholder is safe to show
+   and doubles as a format hint (e.g. tu@email.com). */
+.form-input::placeholder {
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-smooth);
+}
+
+.form-input:focus::placeholder {
+  opacity: 0.45;
 }
 
 .form-input:focus {
@@ -258,8 +266,8 @@
 
 .submit-btn {
   position: relative;
-  align-self: flex-start;
-  min-width: 12rem;
+  align-self: stretch;
+  width: 100%;
   min-height: 3.25rem;
   background-color: var(--color-title);
   color: var(--color-bg-primary);
@@ -275,13 +283,6 @@
     box-shadow var(--duration-fast) var(--ease-smooth),
     transform var(--duration-fast) var(--ease-smooth);
   font-family: var(--font-main);
-}
-
-.submit-btn:hover:not(:disabled) {
-  background-color: transparent;
-  color: var(--color-title);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-2px);
 }
 
 .submit-btn:disabled {
@@ -386,44 +387,39 @@
    Responsive
    ------------------------------------------------------------ */
 
-@media (max-width: 992px) {
-  .contact-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contact-info {
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .contact-info-title {
-    grid-column: 1 / -1;
+/* ≥ 768px — tablet: roomier padding */
+@media (min-width: 768px) {
+  .contact {
+    padding: 4rem 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .contact {
-    padding: 3rem 1rem;
+/* ≥ 993px — desktop: two-column grid, sticky info, roomier form */
+@media (min-width: 993px) {
+  .contact-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
 
   .contact-info {
-    grid-template-columns: 1fr;
+    position: sticky;
+    top: calc(var(--navbar-height) + 1.5rem);
+    display: flex;
+    flex-direction: column;
   }
 
-  .contact-info,
-  .contact-form-container {
-    padding: 1.5rem;
+  .contact {
+    padding: 5rem 1.5rem;
   }
 
   .contact-form-container {
-    padding: 1.5rem 1.25rem;
+    padding: 2.25rem 2rem;
   }
 
   .submit-btn {
-    align-self: stretch;
-    width: 100%;
+    align-self: flex-start;
+    width: auto;
+    min-width: 12rem;
   }
 }
 

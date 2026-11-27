@@ -3,13 +3,15 @@ import './ReducedMotionNotice.css'
 
 const STORAGE_KEY = 'pml-reduced-motion-notice-dismissed'
 
+// Persist in localStorage so the notice stays dismissed across sessions
+
 function ReducedMotionNotice() {
   const [isVisible, setIsVisible] = useState(false)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const wasDismissed = sessionStorage.getItem(STORAGE_KEY) === 'true'
+    const wasDismissed = localStorage.getItem(STORAGE_KEY) === 'true'
 
     if (mediaQuery.matches && !wasDismissed) {
       setIsVisible(true)
@@ -32,7 +34,7 @@ function ReducedMotionNotice() {
   }, [isVisible])
 
   const dismiss = () => {
-    sessionStorage.setItem(STORAGE_KEY, 'true')
+    localStorage.setItem(STORAGE_KEY, 'true')
     setIsVisible(false)
   }
 

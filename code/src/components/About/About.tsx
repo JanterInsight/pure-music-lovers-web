@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Reveal from '../Reveal/Reveal'
+import { useReducedMotionScrollProgress } from '../../hooks/useScrollManager'
 import './About.css'
 
 interface Milestone {
@@ -60,42 +61,14 @@ const values: ValueCard[] = [
 
 function About() {
   const timelineRef = useRef<HTMLDivElement>(null)
-  const [fillProgress, setFillProgress] = useState(0)
 
-  // Scroll-driven gold line fill — draws the story as the user descends
-  useEffect(() => {
-    const timeline = timelineRef.current
-    if (!timeline) return
-
-    // Reduced motion: show the complete rail, skip scroll-driven drawing
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      setFillProgress(1)
-      return
-    }
-
-    const updateFill = () => {
-      const rect = timeline.getBoundingClientRect()
-      const viewportAnchor = window.innerHeight * 0.75
-
-      if (rect.top >= viewportAnchor) {
-        setFillProgress(0)
-        return
-      }
-
-      const scrolled = viewportAnchor - rect.top
-      const progress = Math.min(1, Math.max(0, scrolled / rect.height))
-      setFillProgress(progress)
-    }
-
-    updateFill()
-    window.addEventListener('scroll', updateFill, { passive: true })
-    window.addEventListener('resize', updateFill)
-
-    return () => {
-      window.removeEventListener('scroll', updateFill)
-      window.removeEventListener('resize', updateFill)
-    }
-  }, [])
+  // Scroll-driven gold line fill — draws the story as the user descends.
+  // Uses shared scroll manager to avoid layout thrash.
+  const fillProgress = useReducedMotionScrollProgress(timelineRef, {
+    viewportAnchor: 0.75,
+    startAt: 'top',
+    endAt: 'bottom',
+  })
 
   return (
     <section className="about" id="sobre-nosotros">

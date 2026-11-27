@@ -5,14 +5,21 @@ import './Gallery.css'
 
 const base = import.meta.env.BASE_URL
 
+// Responsive image sizes for srcset
+const IMAGE_WIDTHS = [400, 800, 1200, 1600]
+
+function buildSrcSet(imageName: string): string {
+  return IMAGE_WIDTHS.map((w) => `${base}gallery/${imageName}-${w}w.webp ${w}w`).join(', ')
+}
+
 const galleryImages: GalleryImage[] = [
-  { src: `${base}gallery/pure-music-lovers-front.jpg`, alt: 'Puros Melómanos - Banner Principal' },
-  { src: `${base}gallery/diffusion-music-lovers-front.jpg`, alt: 'Difusión Melómana - Banner' },
-  { src: `${base}gallery/second-event_1.jpg`, alt: 'Segundo Evento - Foto 1' },
-  { src: `${base}gallery/second-event_2.jpg`, alt: 'Segundo Evento - Foto 2' },
-  { src: `${base}gallery/second-event_3.jpg`, alt: 'Segundo Evento - Foto 3' },
-  { src: `${base}gallery/second-event_4.jpg`, alt: 'Segundo Evento - Foto 4' },
-  { src: `${base}gallery/second-event_5.jpg`, alt: 'Segundo Evento - Foto 5' },
+  { src: `${base}gallery/pure-music-lovers-front.webp`, alt: 'Puros Melómanos', srcName: 'pure-music-lovers-front' },
+  { src: `${base}gallery/diffusion-music-lovers-front.webp`, alt: 'Difusión Melómana', srcName: 'diffusion-music-lovers-front' },
+  { src: `${base}gallery/second-event_1.webp`, alt: 'Foto 1', srcName: 'second-event_1' },
+  { src: `${base}gallery/second-event_2.webp`, alt: 'Foto 2', srcName: 'second-event_2' },
+  { src: `${base}gallery/second-event_3.webp`, alt: 'Foto 3', srcName: 'second-event_3' },
+  { src: `${base}gallery/second-event_4.webp`, alt: 'Foto 4', srcName: 'second-event_4' },
+  { src: `${base}gallery/second-event_5.webp`, alt: 'Foto 5', srcName: 'second-event_5' },
 ]
 
 function Gallery() {
@@ -145,14 +152,18 @@ function Gallery() {
           <Reveal className="carousel" variant="scale">
             <div className="carousel-frame">
               {galleryImages.map((image, index) => (
-                <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  className={`carousel-slide${index === currentIndex ? ' is-active' : ''}`}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  aria-hidden={index !== currentIndex}
-                />
+                <picture key={image.srcName || image.src}>
+                  <source type="image/webp" srcSet={buildSrcSet(image.srcName || '')} sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, (max-width: 1200px) 1200px, 1600px" />
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className={`carousel-slide${index === currentIndex ? ' is-active' : ''}`}
+                    loading="lazy"
+                    aria-hidden={index !== currentIndex}
+                    width={1600}
+                    height={900}
+                  />
+                </picture>
               ))}
             </div>
 
@@ -195,7 +206,7 @@ function Gallery() {
           <div className="film-strip" ref={stripRef}>
             {galleryImages.map((image, index) => (
               <button
-                key={image.src}
+                key={image.srcName || image.src}
                 type="button"
                 className={`film-thumb${index === currentIndex ? ' is-active' : ''}`}
                 onClick={() => setCurrentIndex(index)}
@@ -203,7 +214,10 @@ function Gallery() {
                 aria-current={index === currentIndex}
                 data-thumb-index={index}
               >
-                <img src={image.src} alt="" loading="lazy" />
+                <picture>
+                  <source type="image/webp" srcSet={`${base}gallery/${image.srcName || ''}-400w.webp 400w, ${base}gallery/${image.srcName || ''}-800w.webp 800w`} sizes="148px" />
+                  <img src={`${base}gallery/${image.srcName || ''}-400w.webp`} alt="" loading="lazy" width={148} height={110} />
+                </picture>
               </button>
             ))}
           </div>
@@ -259,7 +273,10 @@ function Gallery() {
                 <div className="lightbox-counter" aria-live="polite" aria-atomic="true">
                   Imagen {selectedImageIndex + 1} de {galleryImages.length}
                 </div>
-                <img src={selectedImage.src} alt={selectedImage.alt} />
+                <picture>
+                  <source type="image/webp" srcSet={buildSrcSet(selectedImage.srcName || '')} sizes="90vw" />
+                  <img src={selectedImage.src} alt={selectedImage.alt} width={1600} height={900} />
+                </picture>
               </>
             )}
           </div>

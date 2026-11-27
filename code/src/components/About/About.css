@@ -6,7 +6,7 @@
 
 .about {
   background-color: var(--color-bg-primary);
-  padding: 5rem 1.5rem;
+  padding: 3.5rem 1.25rem;
   position: relative;
   overflow: hidden;
 }
@@ -32,10 +32,10 @@
 }
 
 .about-intro p {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   color: var(--color-text-secondary);
   line-height: 1.85;
-  text-align: justify;
+  text-align: left;
   text-wrap: pretty;
 }
 
@@ -53,7 +53,7 @@
 
 .about .pull-quote {
   max-width: 46rem;
-  margin: 4rem auto 3rem;
+  margin: 3rem auto 2.25rem;
   text-align: center;
   text-wrap: balance;
   position: relative;
@@ -72,7 +72,7 @@
 
 .about-divider {
   max-width: 24rem;
-  margin: 0 auto 5rem;
+  margin: 0 auto 3.5rem;
 }
 
 /* ---------- Milestone timeline ---------- */
@@ -82,16 +82,16 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 1rem 0 2rem;
+  padding-left: calc(var(--space-unit) * 4);
 }
 
-/* Vertical gold rail — draws itself on scroll */
+/* Vertical gold rail — draws itself on scroll (left edge on mobile) */
 .about-rail {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: var(--space-unit);
   width: var(--timeline-about-width);
-  transform: translateX(-50%);
   background: linear-gradient(180deg,
       transparent 0%,
       color-mix(in srgb, var(--color-title) 15%, transparent) 8%,
@@ -107,46 +107,31 @@
   box-shadow: var(--gold-glow-soft);
 }
 
-/* Alternating cards */
+/* Cards — single column, left-aligned (mobile base) */
 .milestone {
   position: relative;
-  width: calc(50% - var(--space-unit) * 4);
-  margin-bottom: 3.5rem;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 2.5rem;
+  text-align: left;
 }
 
 .milestone:last-child {
   margin-bottom: 0;
 }
 
-.milestone-side-left {
-  margin-right: auto;
-  text-align: right;
-}
-
-.milestone-side-right {
-  margin-left: auto;
-  text-align: left;
-}
-
-/* Gold node on the rail */
+/* Gold node on the rail — left edge (mobile base) */
 .milestone-node {
   position: absolute;
   top: 2.25rem;
+  left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
   width: var(--timeline-dot-size);
   height: var(--timeline-dot-size);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-}
-
-.milestone-side-left .milestone-node {
-  right: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
-  transform: translateX(50%);
-}
-
-.milestone-side-right .milestone-node {
-  left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
   transform: translateX(-50%);
 }
 
@@ -188,12 +173,6 @@
     transform var(--duration-fast) var(--ease-smooth);
 }
 
-.milestone-card:hover {
-  border-color: var(--color-title);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
-}
-
 .milestone-year {
   font-family: var(--font-mono);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
@@ -231,10 +210,10 @@
 
 .about-values {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
   max-width: 1100px;
-  margin: 5rem auto 0;
+  margin: 3.5rem auto 0;
 }
 
 .value-card {
@@ -256,12 +235,6 @@
     border-color var(--duration-fast) var(--ease-smooth),
     box-shadow var(--duration-fast) var(--ease-smooth),
     transform var(--duration-fast) var(--ease-smooth);
-}
-
-.value-card-inner:hover {
-  border-color: var(--color-title);
-  box-shadow: var(--card-glow-hover);
-  transform: translateY(-4px);
 }
 
 .value-icon {
@@ -298,7 +271,7 @@
 
 .about-cta {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 3.5rem;
   position: relative;
 }
 
@@ -327,79 +300,77 @@
     transform var(--duration-fast) var(--ease-smooth);
 }
 
-.about-cta-link:hover {
-  background-color: var(--color-title);
-  color: var(--color-bg-primary);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-2px);
-}
-
 .about-cta-link .value-svg {
   width: 20px;
   height: 20px;
   transition: transform var(--duration-fast) var(--ease-expo);
 }
 
-.about-cta-link:hover .value-svg {
-  transform: translateX(3px);
-}
+/* ---------- Responsive: alternating timeline on tablet+ ---------- */
 
-/* ---------- Responsive: single column, rail on the edge ---------- */
-
-@media (max-width: 860px) {
+@media (min-width: 860px) {
   .about {
-    padding: 3.5rem 1.25rem;
+    padding: 5rem 1.5rem;
   }
 
   .about-intro p {
-    font-size: 1.05rem;
-    text-align: left;
+    font-size: 1.25rem;
+    text-align: justify;
   }
 
   .about .pull-quote {
-    margin: 3rem auto 2.25rem;
+    margin: 4rem auto 3rem;
   }
 
   .about-divider {
-    margin-bottom: 3.5rem;
+    margin-bottom: 5rem;
   }
 
   .about-timeline {
-    padding-left: var(--space-unit) * 4;
+    padding-left: 0;
   }
 
   .about-rail {
-    left: calc(var(--space-unit) * 4);
-  }
-
-  .milestone,
-  .milestone-side-left,
-  .milestone-side-right {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    text-align: left;
-  }
-
-  .milestone-side-left .milestone-node,
-  .milestone-side-right .milestone-node {
-    left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
-    right: auto;
+    left: 50%;
     transform: translateX(-50%);
   }
 
   .milestone {
-    margin-bottom: 2.5rem;
+    width: calc(50% - var(--space-unit) * 4);
+    margin-bottom: 3.5rem;
+  }
+
+  .milestone-side-left {
+    margin-right: auto;
+    margin-left: 0;
+    text-align: right;
+  }
+
+  .milestone-side-right {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .milestone-side-left .milestone-node {
+    right: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
+    left: auto;
+    transform: translateX(50%);
+  }
+
+  .milestone-side-right .milestone-node {
+    left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
+    transform: translateX(-50%);
   }
 
   .about-values {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 3.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 5rem;
   }
 
   .about-cta {
-    margin-top: 3.5rem;
+    margin-top: 5rem;
   }
 }
 

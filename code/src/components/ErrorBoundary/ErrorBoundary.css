@@ -1,0 +1,80 @@
+.error-boundary {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.5rem;
+  background-color: var(--color-bg-primary);
+}
+
+.error-boundary-card {
+  max-width: 26rem;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: color-mix(in srgb, var(--color-bg-secondary) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 35%, transparent);
+  border-radius: var(--radius-md);
+}
+
+.error-boundary-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-title) 45%, transparent);
+  background: color-mix(in srgb, var(--color-title) 8%, transparent);
+  color: var(--color-title);
+}
+
+.error-boundary-icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.error-boundary-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-title);
+  margin-bottom: 0.75rem;
+}
+
+.error-boundary-text {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.error-boundary-btn {
+  padding: 0.85rem 2rem;
+  border: 2px solid var(--color-title);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-title);
+  color: var(--color-bg-primary);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-smooth),
+    color var(--duration-fast) var(--ease-smooth);
+}
+
+.error-boundary-btn:hover {
+  background-color: transparent;
+  color: var(--color-title);
+}
+
+.error-boundary-btn:focus-visible {
+  outline: 2px solid var(--color-title);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-boundary-btn {
+    transition: none;
+  }
+}

@@ -94,10 +94,58 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   const [honeypot, setHoneypot] = useState('')
+  // Track which fields the user actually interacted with (blurred at least once).
+  // Validation messages only appear for touched fields (or after a submit attempt),
+  // never on the first focus/click — keeps errors non-intrusive.
+  const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({})
   const toastTimer = useRef<number | undefined>(undefined)
 
   // Non-blocking toast — auto-dismiss after 4s, polite screen-reader announcement
   useEffect(() => () => window.clearTimeout(toastTimer.current), [])
+
+  // Universal, deterministic label-float mechanism for ALL browsers and field types.
+  // Toggles .is-filled (has content) and .is-focused (currently focused) on
+  // each .form-group, so every input — text, email, textarea — behaves identically.
+  // Runs on every relevant event, plus animationstart to catch browser autofill.
+  useEffect(() => {
+    const inputs = document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.form-input')
+    const sync = (input: HTMLInputElement | HTMLTextAreaElement) => {
+      const group = input.closest('.form-group')
+      if (!group) return
+      group.classList.toggle('is-filled', input.value.length > 0)
+      group.classList.toggle('is-focused', document.activeElement === input)
+    }
+
+    const cleanups: Array<() => void> = []
+    inputs.forEach((input) => {
+      sync(input)
+      const onInput = () => sync(input)
+      const onFocus = () => sync(input)
+      const onBlur = () => sync(input)
+      // Also listen for autofill/autocomplete changes
+      const onChange = () => sync(input)
+      input.addEventListener('input', onInput)
+      input.addEventListener('focus', onFocus)
+      input.addEventListener('blur', onBlur)
+      input.addEventListener('change', onChange)
+      // Animation frames can catch autofill in some browsers
+      let rafId: number
+      const onAnimationStart = () => {
+        rafId = requestAnimationFrame(() => sync(input))
+      }
+      input.addEventListener('animationstart', onAnimationStart)
+      cleanups.push(() => {
+        input.removeEventListener('input', onInput)
+        input.removeEventListener('focus', onFocus)
+        input.removeEventListener('blur', onBlur)
+        input.removeEventListener('change', onChange)
+        input.removeEventListener('animationstart', onAnimationStart)
+        cancelAnimationFrame(rafId)
+      })
+    })
+
+    return () => cleanups.forEach((fn) => fn())
+  }, [])
 
   const showToast = (message: string) => {
     window.clearTimeout(toastTimer.current)
@@ -111,9 +159,11 @@ function Contact() {
     setErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
-  // Live validation on blur: confirm errors early without interrupting typing
+  // Validation on blur only applies to fields the user has actually interacted with.
+  // Simply focusing and leaving a field does NOT trigger an error message.
   const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name } = e.target
+    setTouchedFields((prev) => ({ ...prev, [name]: true }))
     const fieldError = validateForm(formData)[name as keyof ContactFormData]
     setErrors((prev) => ({ ...prev, [name]: fieldError }))
   }
@@ -126,6 +176,8 @@ function Contact() {
 
     const newErrors = validateForm(formData)
     setErrors(newErrors)
+    // A submit attempt "touches" every field so all problems become visible at once
+    setTouchedFields({ name: true, email: true, subject: true, message: true })
 
     if (Object.keys(newErrors).length > 0) {
       // Move focus to the first invalid field
@@ -137,12 +189,30 @@ function Contact() {
     setIsSubmitting(true)
 
     const body = `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
-    window.location.href = `mailto:${contactInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`
+
+    let mailtoError = false
+    try {
+      window.location.href = `mailto:${contactInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`
+    } catch {
+      mailtoError = true
+    }
 
     setTimeout(() => {
       setFormData(emptyForm)
+      setTouchedFields({})
       setIsSubmitting(false)
-      showToast('Mensaje enviado correctamente. Se abrirá tu cliente de correo.')
+      // Programmatic clearing doesn't fire input events — reset label state classes
+      // so labels drop back to their resting position immediately.
+      document
+        .querySelectorAll<HTMLElement>('.form-input')
+        .forEach((input) => {
+          input.closest('.form-group')?.classList.remove('is-filled', 'is-focused')
+        })
+      showToast(
+        mailtoError
+          ? 'No se pudo abrir tu cliente de correo. Escribinos directamente a ' + contactInfo.email
+          : 'Mensaje enviado correctamente. Se abrirá tu cliente de correo.',
+      )
     }, 500)
   }
 
@@ -225,14 +295,14 @@ function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input${errors.name ? ' error' : ''}`}
-                  placeholder=" "
+                  className={`form-input${touchedFields.name && errors.name ? ' error' : ''}`}
+                  placeholder="Tu nombre"
                   autoComplete="name"
-                  aria-invalid={errors.name ? 'true' : undefined}
-                  aria-describedby={errors.name ? 'name-error' : undefined}
+                  aria-invalid={touchedFields.name && errors.name ? 'true' : undefined}
+                  aria-describedby={touchedFields.name && errors.name ? 'name-error' : undefined}
                   required
                 />
-                {errors.name && <span id="name-error" role="alert" className="error-message">{errors.name}</span>}
+                {touchedFields.name && errors.name && <span id="name-error" role="alert" className="error-message">{errors.name}</span>}
               </div>
 
               <div className="form-group">
@@ -244,14 +314,14 @@ function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input${errors.email ? ' error' : ''}`}
-                  placeholder=" "
+                  className={`form-input${touchedFields.email && errors.email ? ' error' : ''}`}
+                  placeholder="tu@email.com"
                   autoComplete="email"
-                  aria-invalid={errors.email ? 'true' : undefined}
-                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  aria-invalid={touchedFields.email && errors.email ? 'true' : undefined}
+                  aria-describedby={touchedFields.email && errors.email ? 'email-error' : undefined}
                   required
                 />
-                {errors.email && <span id="email-error" role="alert" className="error-message">{errors.email}</span>}
+                {touchedFields.email && errors.email && <span id="email-error" role="alert" className="error-message">{errors.email}</span>}
               </div>
 
               <div className="form-group">
@@ -263,14 +333,14 @@ function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input${errors.subject ? ' error' : ''}`}
-                  placeholder=" "
+                  className={`form-input${touchedFields.subject && errors.subject ? ' error' : ''}`}
+                  placeholder="¿Sobre qué quieres escribirnos?"
                   autoComplete="off"
-                  aria-invalid={errors.subject ? 'true' : undefined}
-                  aria-describedby={errors.subject ? 'subject-error' : undefined}
+                  aria-invalid={touchedFields.subject && errors.subject ? 'true' : undefined}
+                  aria-describedby={touchedFields.subject && errors.subject ? 'subject-error' : undefined}
                   required
                 />
-                {errors.subject && <span id="subject-error" role="alert" className="error-message">{errors.subject}</span>}
+                {touchedFields.subject && errors.subject && <span id="subject-error" role="alert" className="error-message">{errors.subject}</span>}
               </div>
 
               <div className="form-group">
@@ -281,14 +351,14 @@ function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`form-input${errors.message ? ' error' : ''}`}
-                  placeholder=" "
+                  className={`form-input${touchedFields.message && errors.message ? ' error' : ''}`}
+                  placeholder="Cuéntanos lo que necesites..."
                   rows={5}
-                  aria-invalid={errors.message ? 'true' : undefined}
-                  aria-describedby={errors.message ? 'message-error' : undefined}
+                  aria-invalid={touchedFields.message && errors.message ? 'true' : undefined}
+                  aria-describedby={touchedFields.message && errors.message ? 'message-error' : undefined}
                   required
                 ></textarea>
-                {errors.message && <span id="message-error" role="alert" className="error-message">{errors.message}</span>}
+                {touchedFields.message && errors.message && <span id="message-error" role="alert" className="error-message">{errors.message}</span>}
               </div>
 
               {/* Honeypot — hidden from users and AT, catches naive bots */}

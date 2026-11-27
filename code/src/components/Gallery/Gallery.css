@@ -6,7 +6,7 @@
 
 .gallery {
   background-color: var(--color-bg-primary);
-  padding: 5rem 1.5rem;
+  padding: 3.5rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -20,6 +20,7 @@
   color: var(--color-title);
   text-align: center;
   margin-bottom: 3rem;
+  padding: 0 1rem;
   font-weight: 700;
   font-family: var(--font-main);
   letter-spacing: -0.02em;
@@ -37,7 +38,7 @@
 /* Full-bleed frame: breaks out of the container to viewport width */
 .carousel-frame {
   position: relative;
-  height: var(--carousel-height);
+  height: clamp(260px, 52vw, 420px);
   margin-inline: calc(50% - 50vw);
   overflow: hidden;
   background-color: #000;
@@ -85,15 +86,15 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: color-mix(in srgb, var(--color-bg-primary) 65%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-title) 45%, transparent);
   color: var(--color-title);
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1;
   cursor: pointer;
   border-radius: 50%;
@@ -109,26 +110,17 @@
   margin-top: -4px;
 }
 
-.carousel-nav:hover,
-.carousel-nav:focus-visible {
-  background: var(--color-title);
-  border-color: var(--color-title);
-  color: var(--color-bg-primary);
-  box-shadow: var(--shadow-glow-strong);
-  outline: none;
-}
-
 .carousel-nav:focus-visible {
   outline: 2px solid var(--color-title);
   outline-offset: 3px;
 }
 
 .carousel-prev {
-  left: 1.5rem;
+  left: 0.75rem;
 }
 
 .carousel-next {
-  right: 1.5rem;
+  right: 0.75rem;
 }
 
 /* ---------- Position + caption ---------- */
@@ -161,7 +153,7 @@
   color: var(--color-text-secondary);
   border-left: 1px solid color-mix(in srgb, var(--color-border) 45%, transparent);
   padding-left: 0.75rem;
-  max-width: 40ch;
+  max-width: 22ch;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -190,14 +182,6 @@
     border-color var(--duration-fast) var(--ease-smooth);
 }
 
-.carousel-expand:hover,
-.carousel-expand:focus-visible {
-  background: var(--color-title);
-  border-color: var(--color-title);
-  color: var(--color-bg-primary);
-  outline: none;
-}
-
 .carousel-expand:focus-visible {
   outline: 2px solid var(--color-title);
   outline-offset: 3px;
@@ -210,7 +194,7 @@
   gap: var(--film-strip-gap);
   max-width: var(--container-wide);
   margin: 1.25rem auto 0;
-  padding: 0 1.5rem 0.5rem;
+  padding: 0 1rem 0.5rem;
   overflow-x: auto;
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
@@ -229,8 +213,8 @@
 .film-thumb {
   position: relative;
   flex: 0 0 auto;
-  width: 148px;
-  height: var(--film-strip-height);
+  width: 104px;
+  height: 84px;
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
   border-radius: var(--radius-sm);
@@ -254,12 +238,6 @@
   display: block;
 }
 
-.film-thumb:hover {
-  opacity: 0.85;
-  filter: grayscale(0);
-  border-color: color-mix(in srgb, var(--color-title) 60%, transparent);
-}
-
 .film-thumb.is-active {
   opacity: 1;
   filter: grayscale(0);
@@ -274,46 +252,46 @@
   filter: grayscale(0);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive: larger viewer on tablet+ ---------- */
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .gallery {
-    padding: 3.5rem 0;
+    padding: 5rem 1.5rem;
   }
 
   .gallery-title {
-    padding: 0 1rem;
+    padding: 0;
   }
 
   .carousel-frame {
-    height: clamp(260px, 52vw, 420px);
+    height: var(--carousel-height);
   }
 
   .carousel-nav {
-    width: 44px;
-    height: 44px;
-    font-size: 2rem;
+    width: 56px;
+    height: 56px;
+    font-size: 2.5rem;
   }
 
   .carousel-prev {
-    left: 0.75rem;
+    left: 1.5rem;
   }
 
   .carousel-next {
-    right: 0.75rem;
+    right: 1.5rem;
   }
 
   .carousel-caption {
-    max-width: 22ch;
+    max-width: 40ch;
   }
 
   .film-strip {
-    padding: 0 1rem 0.5rem;
+    padding: 0 1.5rem 0.5rem;
   }
 
   .film-thumb {
-    width: 104px;
-    height: 84px;
+    width: 148px;
+    height: var(--film-strip-height);
   }
 }
 
@@ -355,7 +333,7 @@
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn var(--duration-fast) var(--ease-smooth);
 }
 
 @keyframes fadeIn {
@@ -375,20 +353,20 @@
 
 .lightbox-close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
   color: var(--color-text-primary);
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor: pointer;
   z-index: 2001;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.3s ease;
+  transition: color var(--duration-fast) var(--ease-smooth);
 }
 
 .lightbox-close:hover,
@@ -410,15 +388,17 @@
   background: rgba(255, 215, 0, 0.1);
   border: 2px solid var(--color-title);
   color: var(--color-title);
-  font-size: 3rem;
-  width: 60px;
-  height: 60px;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2001;
-  transition: all 0.3s ease;
+  transition:
+    background-color var(--duration-fast) var(--ease-smooth),
+    color var(--duration-fast) var(--ease-smooth);
   border-radius: 50%;
 }
 
@@ -427,24 +407,17 @@
   margin-top: -6px;
 }
 
-.lightbox-nav:hover,
-.lightbox-nav:focus-visible {
-  background: var(--color-title);
-  color: var(--color-bg-primary);
-  outline: none;
-}
-
 .lightbox-nav:focus-visible {
   outline: 2px solid var(--color-title);
   outline-offset: 3px;
 }
 
 .lightbox-prev {
-  left: 2rem;
+  left: 1rem;
 }
 
 .lightbox-next {
-  right: 2rem;
+  right: 1rem;
 }
 
 .lightbox-content {
@@ -480,26 +453,26 @@
   border: 1px solid var(--color-border);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .lightbox-close {
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    width: 40px;
-    height: 40px;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    width: 50px;
+    height: 50px;
   }
 
   .lightbox-nav {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    font-size: 3rem;
   }
 
   .lightbox-prev {
-    left: 1rem;
+    left: 2rem;
   }
 
   .lightbox-next {
-    right: 1rem;
+    right: 2rem;
   }
 }

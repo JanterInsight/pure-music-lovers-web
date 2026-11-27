@@ -50,7 +50,7 @@
 
 /* After the entrance settles, sweep the gold fill left → right. */
 .kinetic.outline-fill.is-revealed {
-  animation: outline-sweep 1.6s var(--ease-expo) 1.1s forwards;
+  animation: outline-sweep var(--duration-hero) var(--ease-expo) 1.1s forwards;
 }
 
 @keyframes outline-sweep {

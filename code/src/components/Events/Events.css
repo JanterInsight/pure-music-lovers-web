@@ -5,7 +5,7 @@
 
 .events {
   background-color: var(--color-bg-primary);
-  padding: 5rem 1.5rem;
+  padding: 3.5rem 1.25rem;
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   color: var(--color-title);
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   font-weight: 700;
   font-family: var(--font-main);
   letter-spacing: -0.02em;
@@ -33,16 +33,16 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 1rem 0 2rem;
+  padding-left: calc(var(--space-unit) * 4);
 }
 
-/* Vertical gold rail — draws itself on scroll */
+/* Vertical gold rail — left edge on mobile */
 .timeline-rail {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: var(--space-unit);
   width: var(--timeline-width);
-  transform: translateX(-50%);
   background: linear-gradient(180deg,
       transparent 0%,
       color-mix(in srgb, var(--color-title) 15%, transparent) 8%,
@@ -58,47 +58,32 @@
   box-shadow: var(--gold-glow-soft);
 }
 
-/* ---------- Alternating cards ---------- */
+/* ---------- Cards — single column on mobile ---------- */
 
 .event-card {
   position: relative;
-  width: calc(50% - var(--space-unit) * 4);
-  margin-bottom: 5rem;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 3rem;
+  text-align: left;
 }
 
 .event-card:last-child {
   margin-bottom: 0;
 }
 
-.event-side-left {
-  margin-right: auto;
-  text-align: right;
-}
-
-.event-side-right {
-  margin-left: auto;
-  text-align: left;
-}
-
-/* Gold node on the rail */
+/* Gold node on the rail — left edge */
 .timeline-node {
   position: absolute;
   top: 2.5rem;
+  left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
   width: var(--timeline-dot-size);
   height: var(--timeline-dot-size);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-}
-
-.event-side-left .timeline-node {
-  right: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
-  transform: translateX(50%);
-}
-
-.event-side-right .timeline-node {
-  left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
   transform: translateX(-50%);
 }
 
@@ -132,18 +117,12 @@
   background-color: color-mix(in srgb, var(--color-bg-secondary) 70%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 35%, transparent);
   border-radius: var(--radius-md);
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.5rem;
   backdrop-filter: blur(6px);
   transition:
     border-color var(--duration-fast) var(--ease-smooth),
     box-shadow var(--duration-fast) var(--ease-smooth),
     transform var(--duration-fast) var(--ease-smooth);
-}
-
-.event-card-inner:hover {
-  border-color: var(--color-title);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
 }
 
 /* Status-colored ambient gradient behind the card */
@@ -185,25 +164,19 @@
 .event-counter {
   display: flex;
   align-items: flex-start;
-  justify-content: var(--counter-justify, center);
-  gap: 0.4rem;
+  justify-content: var(--counter-justify, flex-start);
+  /* 2×2 grid on narrow screens — separators give way to labels */
+  gap: 0.75rem 1rem;
   margin-bottom: 1.75rem;
   flex-wrap: wrap;
-}
-
-.event-side-left .event-counter {
-  --counter-justify: flex-end;
-}
-
-.event-side-right .event-counter {
-  --counter-justify: flex-start;
 }
 
 .time-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 64px;
+  flex: 0 0 calc(50% - 1rem);
+  min-width: 0;
 }
 
 .time-value {
@@ -236,6 +209,7 @@
 }
 
 .time-separator {
+  display: none;
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   color: var(--color-title);
   font-weight: 700;
@@ -250,7 +224,7 @@
 .event-status {
   display: flex;
   align-items: center;
-  justify-content: var(--counter-justify, center);
+  justify-content: var(--counter-justify, flex-start);
   margin-bottom: 1.5rem;
 }
 
@@ -298,7 +272,7 @@
 .event-location {
   display: flex;
   align-items: center;
-  justify-content: var(--counter-justify, center);
+  justify-content: var(--counter-justify, flex-start);
   gap: 0.5rem;
   color: var(--color-text-secondary);
   font-size: 0.9375rem;
@@ -307,77 +281,87 @@
   word-break: break-word;
 }
 
-.event-location:hover,
 .event-location:focus-visible {
   color: var(--color-title);
 }
 
-/* ---------- Responsive: single column, rail on the edge ---------- */
+/* ---------- Responsive: row counter on wider phones ---------- */
 
-@media (max-width: 860px) {
+@media (min-width: 481px) {
+  .event-counter {
+    gap: 0.4rem;
+  }
+
+  .time-block {
+    flex: initial;
+    min-width: 64px;
+  }
+
+  .time-separator {
+    display: block;
+  }
+}
+
+/* ---------- Responsive: alternating timeline on tablet+ ---------- */
+
+@media (min-width: 860px) {
   .events {
-    padding: 3.5rem 1.25rem;
+    padding: 5rem 1.5rem;
   }
 
   .events-title {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
   .events-timeline {
-    padding-left: var(--space-unit) * 4;
+    padding-left: 0;
   }
 
   .timeline-rail {
-    left: calc(var(--space-unit) * 4);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .event-card,
-  .event-side-left,
+  .event-card {
+    width: calc(50% - var(--space-unit) * 4);
+    margin-bottom: 5rem;
+  }
+
+  .event-side-left {
+    margin-right: auto;
+    text-align: right;
+  }
+
   .event-side-right {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
     text-align: left;
   }
 
-  .event-side-left .timeline-node,
+  .event-side-left .timeline-node {
+    right: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
+    left: auto;
+    transform: translateX(50%);
+  }
+
   .event-side-right .timeline-node {
     left: calc(var(--space-unit) * -4 - var(--timeline-dot-size) / 2);
-    right: auto;
     transform: translateX(-50%);
   }
 
   .event-side-left .event-counter,
-  .event-side-right .event-counter,
   .event-side-left .event-status,
+  .event-side-left .event-location {
+    --counter-justify: flex-end;
+  }
+
+  .event-side-right .event-counter,
   .event-side-right .event-status,
-  .event-side-left .event-location,
   .event-side-right .event-location {
     --counter-justify: flex-start;
   }
 
   .event-card-inner {
-    padding: 2rem 1.5rem;
-  }
-
-  .event-card {
-    margin-bottom: 3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Deliberate 2×2 counter grid — separators give way to labels on small cards */
-  .event-counter {
-    gap: 0.75rem 1rem;
-  }
-
-  .time-block {
-    flex: 0 0 calc(50% - 1rem);
-    min-width: 0;
-  }
-
-  .time-separator {
-    display: none;
+    padding: 2.5rem 2rem;
   }
 }
 
