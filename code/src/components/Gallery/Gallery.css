@@ -123,7 +123,7 @@
   right: 0.75rem;
 }
 
-/* ---------- Position + caption ---------- */
+/* ---------- Position ---------- */
 
 .carousel-meta {
   position: absolute;
@@ -146,17 +146,6 @@
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-title);
-}
-
-.carousel-caption {
-  font-size: 0.8125rem;
-  color: var(--color-text-secondary);
-  border-left: 1px solid color-mix(in srgb, var(--color-border) 45%, transparent);
-  padding-left: 0.75rem;
-  max-width: 22ch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 /* Expand-to-lightbox trigger */
@@ -279,10 +268,6 @@
 
   .carousel-next {
     right: 1.5rem;
-  }
-
-  .carousel-caption {
-    max-width: 40ch;
   }
 
   .film-strip {

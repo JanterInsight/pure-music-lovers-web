@@ -189,7 +189,6 @@ function Gallery() {
               <span className="carousel-position">
                 {currentIndex + 1} / {galleryImages.length}
               </span>
-              <span className="carousel-caption">{currentImage?.alt}</span>
             </div>
 
             <button
